@@ -1,0 +1,102 @@
+{
+  "list": [
+    {
+      "id": 1,
+      "image_url": [
+        "/images/room.jpg",
+        "/images/room2.jpg",
+        "/images/room2.jpg",
+        "/images/room3.jpg",
+        "/images/room4.jpg"
+      ],
+      "name": "강남최대 스튜디오",
+      "address": "청담동",
+      "price": "33000"
+    },
+    {
+      "id": 2,
+      "image_url": [
+        "/images/room5.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg"
+      ],
+      "name": "역삼최대 스튜디오",
+      "address": "역삼동",
+      "price": "40000"
+    },
+    {
+      "id": 3,
+      "image_url": ["/images/room6.jpg", "/images/room.jpg", "/images/room.jpg"],
+      "name": "연남최대 스튜디오",
+      "address": "연남동",
+      "price": "50000"
+    },
+    {
+      "id": 4,
+      "image_url": [
+        "/images/room7.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg"
+      ],
+      "name": "인천최대 스튜디오",
+      "address": "구월동",
+      "price": "20000"
+    },
+    {
+      "id": 5,
+      "image_url": [
+        "/images/room8.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg"
+      ],
+      "name": "역삼최대 스튜디오",
+      "address": "역삼동",
+      "price": "40000"
+    },
+    {
+      "id": 6,
+      "image_url": [
+        "/images/room9.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg"
+      ],
+      "name": "역삼최대 스튜디오",
+      "address": "역삼동",
+      "price": "40000"
+    },
+    {
+      "id": 7,
+      "image_url": [
+        "/images/room10.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg"
+      ],
+      "name": "역삼최대 스튜디오",
+      "address": "역삼동",
+      "price": "40000"
+    },
+    {
+      "id": 8,
+      "image_url": ["/images/room11.jpg", "/images/room.jpg"],
+      "name": "역삼최대 스튜디오",
+      "address": "역삼동",
+      "price": "40000"
+    },    {
+      "id": 9,
+      "image_url": ["/images/room3.jpg", "/images/room.jpg"],
+      "name": "역삼최대 스튜디오",
+      "address": "역삼동",
+      "price": "40000"
+    }
+  ]
+}
