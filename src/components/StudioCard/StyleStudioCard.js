@@ -72,7 +72,7 @@ export const WishBtn = styled.button`
   position: absolute;
   right: 3px;
   top: 10px;
-  z-index: 10;
+  z-index: 2;
   font-size: 30px;
   background: none;
   border: none;

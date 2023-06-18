@@ -2,54 +2,55 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const Background = styled.div`
-  ${props => props.theme.flexBox('row', 'center', 'center')};
-  z-index: 5;
   position: fixed;
+  ${props => props.theme.flexSort('row', 'center', 'center')};
   width: 100%;
   height: 100%;
+  padding: 20px;
   background: rgba(0, 0, 0, 0.5);
+  z-index: 5;
 `;
 
 export const ModalWrapper = styled.div`
-  ${props => props.theme.flexBox('row', 'center', 'center')};
   position: relative;
-  z-index: 10;
-  margin: 0 40px;
-  padding: 40px;
-  width: 100%;
-  height: 500px;
-  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
-  background: #fff;
+  ${props => props.theme.flexSort('column', 'flex-start', 'center')};
+  width: 36vw;
+  min-width: 230px;
   color: #000;
-  border-radius: 10px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+  z-index: 13;
+  overflow-y: auto;
 `;
 
-export const ModalContent = styled.div`
-  ${props => props.theme.flexBox('column', 'center', 'center')};
-  margin: 0 10px;
-  width: 100%;
-  line-height: 1.8;
-  color: #141414;
+export const ModalHeader = styled.div`
+  position: sticky;
+  position: -webkit-sticky;
+  ${props => props.theme.flexSort('row', 'center', 'center')};
+  width: 568px;
+  height: 60px;
+  border-bottom: 1px solid #dddddd;
+`;
 
-  p {
-    margin-bottom: 1rem;
-  }
-
-  button {
-    padding: 10px 24px;
-    background: #141414;
-    color: #fff;
-    border: none;
-  }
+export const Header = styled.div`
+  font-size: 1rem;
+  font-weight: 700;
 `;
 
 export const CloseModalButton = styled(FontAwesomeIcon)`
-  cursor: pointer;
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 22px;
-  height: 22px;
+  top: 19px;
+  left: 20px;
+  width: 20px;
+  height: 20px;
   padding: 0;
-  z-index: 10;
+  z-index: 15;
+  cursor: pointer;
+`;
+
+export const ModalContent = styled.div`
+  width: 100%;
+  max-height: 70vh;
+  overflow-y: auto;
 `;

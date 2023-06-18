@@ -1,10 +1,10 @@
 const theme = {
   primaryColor: '#FFC000',
-  flexBox: (direction = 'row', align = 'center', justify = 'center') => `
+  flexBox: (direction = 'row', justify = 'center', align = 'center') => `
     display: flex;
     flex-direction: ${direction};
-    align-items: ${align};
     justify-content: ${justify};
+    align-items: ${align};
   `,
 };
 

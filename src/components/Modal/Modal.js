@@ -2,15 +2,17 @@ import React, { useRef, useEffect, useCallback } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import useOnClickOutside from '../../hooks/useOutsideClick';
+import useLockBodyScroll from '../../hooks/useLockBodyScroll';
 import {
   Background,
   ModalWrapper,
   ModalContent,
   CloseModalButton,
+  ModalHeader,
+  Header,
 } from './StyleModal';
-import useLockBodyScroll from '../../hooks/useLockBodyScroll';
 
-const Modal = ({ showModal, setShowModal, content }) => {
+const Modal = ({ showModal, setShowModal, header, content }) => {
   const modalRef = useRef();
   const animation = useSpring({
     config: {
@@ -30,7 +32,7 @@ const Modal = ({ showModal, setShowModal, content }) => {
         setShowModal(false);
       }
     },
-    [setShowModal, showModal]
+    [showModal]
   );
 
   useEffect(() => {
@@ -44,12 +46,15 @@ const Modal = ({ showModal, setShowModal, content }) => {
     <Background>
       <animated.div style={animation}>
         <ModalWrapper ref={modalRef}>
-          <ModalContent>{content}</ModalContent>
           <CloseModalButton
             icon={faXmark}
             aria-label="close modal"
             onClick={() => setShowModal(prev => !prev)}
           />
+          <ModalHeader>
+            <Header>{header}</Header>
+          </ModalHeader>
+          <ModalContent>{content}</ModalContent>
         </ModalWrapper>
       </animated.div>
     </Background>

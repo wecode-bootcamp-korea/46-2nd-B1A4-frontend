@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 import * as S from './StyleDetail';
 import Calendar from './component/DayPicker';
 import TimePicker from './component/TimePicker';
 import Map from './component/Map';
+import { date, count } from '../../recoilState';
 
 const Detail = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useRecoilState(date);
+  const [guestCount, setGuestCount] = useRecoilState(count);
   const [isModalShow, setIsModalShow] = useState(false);
   const [isCountModalShow, setIsCountModalShow] = useState(false);
   const [detailData, setDetailData] = useState({});
   const [time, setTime] = useState([]);
-  const [count, setCount] = useState(0);
 
   useEffect(() => {
     fetch('/data/detailData.json')
@@ -45,16 +47,16 @@ const Detail = () => {
   };
 
   const handleCount = value => {
-    if (count + value === 0 || count + value === 11) return;
-    setCount(count + value);
+    if (guestCount + value === 0 || guestCount + value === 11) return;
+    setGuestCount(guestCount + value);
   };
 
   const handleInputCount = e => {
     if (!isNaN(e.target.value)) {
-      setCount(Number(e.target.value));
-      if (count > 10) {
+      setGuestCount(Number(e.target.value));
+      if (guestCount > 10) {
         alert('최대인원은 10명 입니다.');
-        setCount(10);
+        setGuestCount(10);
       }
     }
   };
@@ -131,7 +133,7 @@ const Detail = () => {
               <S.CheckNum>
                 <S.CheckText>인원</S.CheckText>
                 <S.Button onClick={handleCountModal}>
-                  총 예약인원{count === 0 ? null : `: ${count}명`}
+                  총 예약인원{guestCount === 0 ? null : `: ${guestCount}명`}
                   {isCountModalShow ? <S.Arrow /> : <S.ArrowUp />}
                 </S.Button>
                 {isCountModalShow && (
@@ -145,7 +147,7 @@ const Detail = () => {
                         <S.MinusIcon />
                       </S.CountBtn>
                       <S.InputBox
-                        value={count}
+                        value={guestCount}
                         onChange={e => {
                           handleInputCount(e);
                         }}
@@ -165,7 +167,7 @@ const Detail = () => {
             <S.ModalBtn
               onClick={() => {
                 time.length === 0 && alert('시간을 선택해주세요');
-                count === 0 && alert('인원을 선택해주세요.');
+                guestCount === 0 && alert('인원을 선택해주세요.');
                 PostTime();
               }}
             >
