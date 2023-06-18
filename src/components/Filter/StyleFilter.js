@@ -57,6 +57,7 @@ export const CloseBtn = styled.button`
   background-color: white;
   border: none;
   outline: none;
+  cursor: pointer;
 `;
 
 export const Body = styled.div`
@@ -130,12 +131,14 @@ export const BodyTypeFilterInner = styled.div`
 
 export const MoreDiv = styled.div`
   margin-top: 20px;
+  cursor: pointer;
 `;
 
 export const MoreSpan = styled.span`
   text-decoration: underline;
   font-size: 17px;
   font-weight: 400;
+  cursor: pointer;
 `;
 
 export const Footer = styled.div`
@@ -160,6 +163,7 @@ export const AllCancelSpan = styled.span`
   text-decoration: underline;
   font-size: 17px;
   font-weight: 400;
+  cursor: pointer;
 `;
 
 export const BlackBtn = styled.button`
@@ -170,6 +174,7 @@ export const BlackBtn = styled.button`
   font-size: 17px;
   font-weight: 400;
   color: white;
+  cursor: pointer;
 `;
 
 export const RangeBox = styled.div``;

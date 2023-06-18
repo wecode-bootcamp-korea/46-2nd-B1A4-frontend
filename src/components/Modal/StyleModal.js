@@ -3,32 +3,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const Background = styled.div`
   position: fixed;
-  ${props => props.theme.flexSort('row', 'center', 'center')};
+  ${props => props.theme.flexBox('row', 'center', 'center')};
   width: 100%;
   height: 100%;
   padding: 20px;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 5;
+  z-index: 100;
 `;
 
 export const ModalWrapper = styled.div`
   position: relative;
-  ${props => props.theme.flexSort('column', 'flex-start', 'center')};
+  ${props => props.theme.flexBox('column', 'flex-start', 'center')};
   width: 36vw;
   min-width: 230px;
   color: #000;
   background: #fff;
   border-radius: 15px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
-  z-index: 13;
-  overflow-y: auto;
 `;
 
 export const ModalHeader = styled.div`
   position: sticky;
   position: -webkit-sticky;
-  ${props => props.theme.flexSort('row', 'center', 'center')};
-  width: 568px;
+  ${props => props.theme.flexBox('row', 'center', 'center')};
+  width: 100%;
   height: 60px;
   border-bottom: 1px solid #dddddd;
 `;

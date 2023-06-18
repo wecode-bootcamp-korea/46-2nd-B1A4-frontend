@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const MainBackground = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: white;
+`;
+
 export const Container = styled.div`
   margin: 0 0 72px 0;
   padding: 100px 80px 20px;

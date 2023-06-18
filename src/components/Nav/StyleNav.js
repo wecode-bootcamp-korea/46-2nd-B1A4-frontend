@@ -41,6 +41,9 @@ export const NavWrapper = styled.div`
   border: 1px dashed ${props => props.theme.primaryColor};
   border-radius: 20px;
   cursor: pointer;
+  :hover {
+    background-color: rgba(221, 221, 221, 0.2);
+  }
 `;
 
 export const NavBox = styled.div`
@@ -175,6 +178,9 @@ export const Button = styled.button`
   border-radius: 50px;
   font-size: 16px;
   cursor: pointer;
+  :hover {
+    box-shadow: 1px 1px 4px rgba(100, 100, 100, 0.4);
+  }
 `;
 
 export const NavZoom = styled.div`
@@ -185,20 +191,19 @@ export const NavZoom = styled.div`
   z-index: 10;
 `;
 
-export const DropDownContainer = styled.div`
+export const DropDownContainer = styled.div``;
+
+export const DropDownWrapper = styled.div`
   position: absolute;
   top: 72px;
   right: 20px;
   width: 120px;
+  padding: 10px 0;
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 0 6px rgba(100, 100, 100, 0.2);
-  z-index: 2;
+  z-index: 15;
   cursor: pointer;
-`;
-
-export const DropDownWrapper = styled.div`
-  margin: 10px 0;
 `;
 
 export const DropDownUnit = styled.div`

@@ -5,6 +5,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import Modal from '../Modal/Modal';
 import Login from '../Login/Login';
 import NavSearchBox from './NavSearchBox';
+import LocalNav from '../../components/Nav/LocalNav';
 import useOnClickOutside from '../../hooks/useOutsideClick';
 import * as S from './StyleNav';
 
@@ -55,7 +56,7 @@ const Nav = () => {
               content={<Login />}
             />
           )}
-          <S.NavContainer border={isNavOpen ? 'none' : '1px solid lightgray'}>
+          <S.NavContainer border={isNavOpen ? 'none' : '0.5px solid lightgray'}>
             <S.NavLeft>
               <S.NavLogo>
                 <a href="/main">
@@ -81,18 +82,19 @@ const Nav = () => {
               <S.NavWrapper>당신의 공간을 스페이스 어라운드하세요</S.NavWrapper>
             </S.NavLeft>
 
-            <S.Button onClick={openDropDown}>Log in</S.Button>
-            {showDropDown && (
-              <S.DropDownContainer ref={dropDownRef}>
+            <S.DropDownContainer ref={dropDownRef}>
+              <S.Button onClick={openDropDown}>Log in</S.Button>
+              {showDropDown && (
                 <S.DropDownWrapper>
                   <S.DropDownUnit onClick={openModal}>로그인</S.DropDownUnit>
                   <S.DropDownUnit onClick={openModal}>회원가입</S.DropDownUnit>
                   <S.DropDownUnit>도움말</S.DropDownUnit>
                   <S.DropDownUnit onClick={logOut}>로그아웃</S.DropDownUnit>
                 </S.DropDownWrapper>
-              </S.DropDownContainer>
-            )}
+              )}
+            </S.DropDownContainer>
           </S.NavContainer>
+          <LocalNav />
 
           {isNavOpen && (
             <S.NavZoom ref={navRef}>

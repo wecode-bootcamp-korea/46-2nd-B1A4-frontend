@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import StudioCard from '../../components/StudioCard/StudioCard';
-import { Container } from './StyleMain';
+import { Container, MainBackground } from './StyleMain';
 
 const Main = () => {
   const [mockData, setMockData] = useState([]);
@@ -55,14 +55,16 @@ const Main = () => {
             );
           })}
       </Container> */}
-      <Container>
-        {filterData.map(list => {
-          return (
-            <StudioCard key={list.studioId} list={list} settings={settings} />
-          );
-        })}
-        <div ref={ref}></div>
-      </Container>
+      <MainBackground>
+        <Container>
+          {filterData.map(list => {
+            return (
+              <StudioCard key={list.studioId} list={list} settings={settings} />
+            );
+          })}
+          <div ref={ref}></div>
+        </Container>
+      </MainBackground>
     </>
   );
 };
