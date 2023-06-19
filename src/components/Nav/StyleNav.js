@@ -9,6 +9,7 @@ export const NavContainer = styled.div`
   background-color: yellow;
   width: 100vw;
   height: 80px;
+  z-index: 100;
 `;
 
 export const NavUnit = styled.div`
