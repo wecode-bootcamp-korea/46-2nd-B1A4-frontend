@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap, faListUl } from '@fortawesome/free-solid-svg-icons';
 import DetailFooter from './DetailFooter';
@@ -14,7 +14,15 @@ const Footer = () => {
   const location = useLocation();
   const isMapOpen = searchParams.get('map_open') === 'true';
 
-  if (location.pathname === '/detail' || location.pathname === '/order') {
+  if (
+    location.pathname === '/loading' ||
+    location.pathname.includes('/res_success') === true ||
+    location.pathname.includes('/req_success') === true
+  ) {
+    return null;
+  }
+
+  if (location.pathname !== '/main') {
     return <DetailFooter />;
   }
 

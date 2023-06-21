@@ -8,6 +8,9 @@ import Footer from './components/Footer/Footer';
 import MyPage from './pages/MyPgae/MyPage';
 import Loading from './pages/Loading/Loading';
 import Wishlist from './pages/Wishlist/Wishlist';
+import ReqSuccess from './components/Toss/ReqSuccess';
+import ResSuccess from './components/Toss/ResSuccess';
+import Fail from './components/Toss/Fail';
 
 const Router = () => {
   return (
@@ -20,7 +23,10 @@ const Router = () => {
           <Route path="/loading" element={<Loading />} />
           <Route path="/wishlist" element={<Wishlist />} />
         </Route>
-        <Route path="/order" element={<Order />} />
+        <Route path="/order/:id" element={<Order />} />
+        <Route path="/order/:id/req_success" element={<ReqSuccess />} />
+        <Route path="/order/:id/res_success" element={<ResSuccess />} />
+        <Route path="/order/:id/fail" element={<Fail />} />
       </Routes>
       <Footer />
     </BrowserRouter>

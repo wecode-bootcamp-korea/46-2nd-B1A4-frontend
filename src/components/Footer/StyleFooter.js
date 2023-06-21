@@ -25,11 +25,10 @@ export const MapBtnLink = styled(Link)`
 `;
 
 export const StyleFooter = styled.div`
-  z-index: 999;
+  z-index: 99;
   position: fixed;
   width: 100%;
   bottom: 0px;
-  padding: 0px 20px;
 `;
 
 export const FooterContainer = styled.div`
@@ -43,6 +42,7 @@ export const FooterContainer = styled.div`
           visibility: visible;
         `}
   border-top: 1px solid #ebebeb;
+  padding: 0px 20px;
 `;
 
 export const FooterInner = styled.div`
@@ -51,7 +51,7 @@ export const FooterInner = styled.div`
   justify-content: space-between;
   align-items: center;
   height: auto;
-  padding: 20px 20px;
+  padding: 20px 0px;
 `;
 
 export const FooterWrapper = styled.div`
