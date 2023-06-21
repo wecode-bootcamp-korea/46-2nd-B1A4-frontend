@@ -19,8 +19,7 @@ export const Card = styled.div`
   }
 `;
 
-export const ImgBox = styled.img`
-  width: 100%;
+export const Img = styled.img`
   border-radius: 20px;
 `;
 
@@ -28,11 +27,13 @@ export const Title = styled.h1`
   font-size: 20px;
   font-weight: 600;
   margin-top: 10px;
+  margin-left: 5px;
 `;
 
 export const Content = styled.p`
   font-size: 15px;
   margin-top: 5px;
+  margin-left: 5px;
 `;
 
 export const ContentPrice = styled(Content)`
@@ -43,21 +44,25 @@ export const StyledSlider = styled(Slider)`
   .slick-slide div {
     outline: none;
   }
+  .slick-list {
+    border-radius: 20px;
+    aspect-ratio: 1;
+  }
   .slick-dots {
     bottom: 2px;
   }
   .slick-arrow {
-    z-index: 5;
+    z-index: 1;
   }
   .slick-prev {
     left: 0px;
   }
   .slick-next {
-    right: 15px;
+    right: 10px;
   }
   .slick-prev:before,
   .slick-next:before {
-    font-size: 35px;
+    font-size: 30px;
     opacity: 0;
     transition: all 1s;
   }
@@ -72,7 +77,7 @@ export const WishBtn = styled.button`
   position: absolute;
   right: 3px;
   top: 10px;
-  z-index: 2;
+  z-index: 1;
   font-size: 30px;
   background: none;
   border: none;
@@ -82,10 +87,7 @@ export const WishBtn = styled.button`
   }
 `;
 
-export const OutlineHeart = styled(AiOutlineHeart)`
-  color: white;
-`;
-
-export const FillHeart = styled(AiFillHeart)`
-  color: red;
+export const HeartImg = styled.img`
+  width: 25px;
+  height: 21px;
 `;

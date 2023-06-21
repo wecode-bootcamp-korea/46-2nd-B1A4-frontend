@@ -4,7 +4,7 @@ export const Container = styled.div`
   margin: 0 0 72px 0;
   padding: 100px 80px 20px;
   display: grid;
-  column-gap: 15px;
+  column-gap: 25px;
   grid-template-columns: repeat(6, 1fr);
   transition: 0.5s;
 

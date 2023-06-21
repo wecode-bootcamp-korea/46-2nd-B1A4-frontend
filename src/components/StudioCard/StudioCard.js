@@ -11,18 +11,22 @@ const StudioCard = ({ list, settings }) => {
   return (
     <S.Card>
       <S.WishBtn onClick={handleWishBtn}>
-        {isWishlistAdd ? <S.FillHeart /> : <S.OutlineHeart />}
+        {isWishlistAdd ? (
+          <S.HeartImg src="/images/fillheart.png" />
+        ) : (
+          <S.HeartImg src="/images/blankheart.png" />
+        )}
       </S.WishBtn>
       <S.StyledLink to={'/detail'}>
         <S.StyledSlider {...settings}>
-          {list.image_url.map(img => {
-            return <S.ImgBox key={list.id} src={img} />;
+          {list.studioImages.map(img => {
+            return <S.Img key={list.studioId} src={img} />;
           })}
         </S.StyledSlider>
-        <S.Title>{list.name}</S.Title>
-        <S.Content>{list.address}</S.Content>
+        <S.Title>{list.studioName}</S.Title>
+        <S.Content>{list.studioAddress}</S.Content>
         <S.ContentPrice>
-          ₩{Number(list.price).toLocaleString('en')}/시간
+          ₩{Number(list.studioPrice).toLocaleString('en')}/시간
         </S.ContentPrice>
       </S.StyledLink>
     </S.Card>

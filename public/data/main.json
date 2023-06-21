@@ -1,102 +1,177 @@
 {
-  "list": [
+  "data": [
     {
-      "id": 1,
-      "image_url": [
+      "studioId": 1,
+      "studioImages": [
         "/images/room.jpg",
         "/images/room2.jpg",
         "/images/room2.jpg",
         "/images/room3.jpg",
         "/images/room4.jpg"
       ],
-      "name": "강남최대 스튜디오",
-      "address": "청담동",
-      "price": "33000"
+      "studioName": "강남최대 스튜디오",
+      "studioAddress": "청담동",
+      "studioPrice": "33000"
     },
     {
-      "id": 2,
-      "image_url": [
+      "studioId": 2,
+      "studioImages": [
         "/images/room5.jpg",
         "/images/room.jpg",
         "/images/room.jpg",
         "/images/room.jpg",
         "/images/room.jpg"
       ],
-      "name": "역삼최대 스튜디오",
-      "address": "역삼동",
-      "price": "40000"
+      "studioName": "역삼최대 스튜디오",
+      "studioAddress": "역삼동",
+      "studioPrice": "40000"
     },
     {
-      "id": 3,
-      "image_url": ["/images/room6.jpg", "/images/room.jpg", "/images/room.jpg"],
-      "name": "연남최대 스튜디오",
-      "address": "연남동",
-      "price": "50000"
+      "studioId": 3,
+      "studioImages": ["/images/room6.jpg", "/images/room.jpg", "/images/room.jpg"],
+      "studioName": "연남최대 스튜디오",
+      "studioAddress": "연남동",
+      "studioPrice": "50000"
     },
     {
-      "id": 4,
-      "image_url": [
+      "studioId": 4,
+      "studioImages": [
         "/images/room7.jpg",
         "/images/room.jpg",
         "/images/room.jpg",
         "/images/room.jpg",
         "/images/room.jpg"
       ],
-      "name": "인천최대 스튜디오",
-      "address": "구월동",
-      "price": "20000"
+      "studioName": "인천최대 스튜디오",
+      "studioAddress": "구월동",
+      "studioPrice": "20000"
     },
     {
-      "id": 5,
-      "image_url": [
+      "studioId": 5,
+      "studioImages": [
         "/images/room8.jpg",
         "/images/room.jpg",
         "/images/room.jpg",
         "/images/room.jpg",
         "/images/room.jpg"
       ],
-      "name": "역삼최대 스튜디오",
-      "address": "역삼동",
-      "price": "40000"
+      "studioName": "역삼최대 스튜디오",
+      "studioAddress": "역삼동",
+      "studioPrice": "40000"
     },
     {
-      "id": 6,
-      "image_url": [
+      "studioId": 6,
+      "studioImages": [
         "/images/room9.jpg",
         "/images/room.jpg",
         "/images/room.jpg",
         "/images/room.jpg",
         "/images/room.jpg"
       ],
-      "name": "역삼최대 스튜디오",
-      "address": "역삼동",
-      "price": "40000"
+      "studioName": "역삼최대 스튜디오",
+      "studioAddress": "역삼동",
+      "studioPrice": "40000"
     },
     {
-      "id": 7,
-      "image_url": [
+      "studioId": 7,
+      "studioImages": [
         "/images/room10.jpg",
         "/images/room.jpg",
         "/images/room.jpg",
         "/images/room.jpg",
         "/images/room.jpg"
       ],
-      "name": "역삼최대 스튜디오",
-      "address": "역삼동",
-      "price": "40000"
+      "studioName": "역삼최대 스튜디오",
+      "studioAddress": "역삼동",
+      "studioPrice": "40000"
     },
     {
-      "id": 8,
-      "image_url": ["/images/room11.jpg", "/images/room.jpg"],
-      "name": "역삼최대 스튜디오",
-      "address": "역삼동",
-      "price": "40000"
+      "studioId": 8,
+      "studioImages": ["/images/room11.jpg", "/images/room.jpg"],
+      "studioName": "역삼최대 스튜디오",
+      "studioAddress": "역삼동",
+      "studioPrice": "40000"
     },    {
-      "id": 9,
-      "image_url": ["/images/room3.jpg", "/images/room.jpg"],
-      "name": "역삼최대 스튜디오",
-      "address": "역삼동",
-      "price": "40000"
+      "studioId": 9,
+      "studioImages": ["/images/room3.jpg", "/images/room.jpg"],
+      "studioName": "역삼최대 스튜디오",
+      "studioAddress": "역삼동",
+      "studioPrice": "40000"
+    },    {
+      "studioId": 10,
+      "studioImages": [
+        "/images/room10.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg"
+      ],
+      "studioName": "역삼최대 스튜디오",
+      "studioAddress": "역삼동",
+      "studioPrice": "40000"
+    },
+    {
+      "studioId": 11,
+      "studioImages": ["/images/room11.jpg", "/images/room.jpg"],
+      "studioName": "역삼최대 스튜디오",
+      "studioAddress": "역삼동",
+      "studioPrice": "40000"
+    },    {
+      "studioId": 12,
+      "studioImages": ["/images/room3.jpg", "/images/room.jpg"],
+      "studioName": "역삼최대 스튜디오",
+      "studioAddress": "역삼동",
+      "studioPrice": "40000"
+    },    {
+      "studioId": 13,
+      "studioImages": [
+        "/images/room10.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg"
+      ],
+      "studioName": "역삼최대 스튜디오",
+      "studioAddress": "역삼동",
+      "studioPrice": "40000"
+    },
+    {
+      "studioId": 14,
+      "studioImages": ["/images/room11.jpg", "/images/room.jpg"],
+      "studioName": "역삼최대 스튜디오",
+      "studioAddress": "역삼동",
+      "studioPrice": "40000"
+    },    {
+      "studioId": 15,
+      "studioImages": ["/images/room3.jpg", "/images/room.jpg"],
+      "studioName": "역삼최대 스튜디오",
+      "studioAddress": "역삼동",
+      "studioPrice": "40000"
+    },    {
+      "studioId": 16,
+      "studioImages": [
+        "/images/room10.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg",
+        "/images/room.jpg"
+      ],
+      "studioName": "역삼최대 스튜디오",
+      "studioAddress": "역삼동",
+      "studioPrice": "40000"
+    },
+    {
+      "studioId": 17,
+      "studioImages": ["/images/room11.jpg", "/images/room.jpg"],
+      "studioName": "역삼최대 스튜디오",
+      "studioAddress": "역삼동",
+      "studioPrice": "40000"
+    },    {
+      "studioId": 18,
+      "studioImages": ["/images/room3.jpg", "/images/room.jpg"],
+      "studioName": "역삼최대 스튜디오",
+      "studioAddress": "역삼동",
+      "studioPrice": "40000"
     }
   ]
 }
