@@ -9,7 +9,7 @@ import { date, count, time, allTime, bookingNumber } from '../../recoilState';
 
 import * as S from './StyleRevUpdate';
 
-const RevUpdate = ({ isOpenModal, handleModal }) => {
+const RevUpdate = ({ isOpenModal, handleModal, studioId }) => {
   const [selectedDate, setSelectedDate] = useRecoilState(date);
   const [guestCount, setGuestCount] = useRecoilState(count);
   const [selectedAllTime, setSelectedAllTime] = useRecoilState(allTime);
@@ -63,7 +63,7 @@ const RevUpdate = ({ isOpenModal, handleModal }) => {
       return null;
     } else {
       getAllTime();
-      navigate('/order');
+      handleModal();
     }
   };
 

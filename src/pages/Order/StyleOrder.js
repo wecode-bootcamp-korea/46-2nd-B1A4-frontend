@@ -29,7 +29,7 @@ export const OrderContainer = styled.div`
 export const OrderWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  height: 1200px;
+  min-width: 900px;
 `;
 
 export const OrderTitle = styled.div`
@@ -44,7 +44,9 @@ export const OrderLeft = styled.div`
   width: 60%;
 `;
 
-export const OrderInner = styled.div``;
+export const OrderInner = styled.div`
+  margin-bottom: 30px;
+`;
 
 export const OrderDiv = styled.div`
   display: flex;
@@ -94,7 +96,7 @@ export const MoreLink = styled.div`
 export const RevTop = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
   margin-bottom: 15px;
 `;
@@ -155,6 +157,7 @@ export const OrderRightInner = styled.div`
 export const Header = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   padding-bottom: 20px;
   border-bottom: 1px solid #eef0f3;
@@ -228,7 +231,7 @@ const selectedBtn = css`
 
 export const MethodBtn = styled.button`
   background-color: white;
-  width: 24%;
+  min-width: 110px;
   border: 1px solid #eef0f3;
   padding: 15px;
   border-radius: 10px;
@@ -236,10 +239,82 @@ export const MethodBtn = styled.button`
   font-size: 0.8rem;
   margin-top: 10px;
   color: gray;
+  ${props => props.isActive && selectedBtn}
+`;
 
+export const SimpleMethodBtn = styled.button`
+  min-width: 110px;
+  height: 50px;
+  background-position: 120xpx 10px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(${props => props.imgUrl});
+  border: 1px solid #eef0f3;
+  padding: 15px;
+  border-radius: 10px;
+
+  margin-top: 10px;
+  color: gray;
   ${props => props.isActive && selectedBtn}
 `;
 
 export const Star = styled.span`
   color: ${props => props.theme.primaryColor};
+`;
+
+export const PhoneSelect = styled.select`
+  padding: 10px;
+  width: 110px;
+  margin: 6px;
+  border-radius: 10px;
+  border: 1px solid #eef0f3;
+  outline: none;
+  option {
+    background: black;
+    color: #fff;
+    padding: 3px 0;
+  }
+`;
+
+export const PhoneInput = styled.input`
+  padding: 10px;
+  width: 110px;
+  margin: 6px;
+  border-radius: 10px;
+  border: 1px solid #eef0f3;
+  outline: none;
+`;
+
+export const PhoneBtn = styled.button`
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  background-color: ${props => props.theme.primaryColor};
+  color: white;
+  font-weight: 500;
+
+  &:hover {
+    cursor: pointer;
+    color: ${props => props.theme.primaryColor};
+    background-color: white;
+    border: 1px solid ${props => props.theme.primaryColor};
+  }
+`;
+
+export const PhoneSaveBtn = styled.button`
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  background-color: ${props => props.theme.primaryColor};
+  color: white;
+  font-weight: 500;
+  margin-top: 30px;
+
+  &:hover {
+    cursor: pointer;
+    color: ${props => props.theme.primaryColor};
+    background-color: white;
+    border: 1px solid ${props => props.theme.primaryColor};
+  }
 `;

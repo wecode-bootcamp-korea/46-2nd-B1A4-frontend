@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 
 export const MapBtn = styled.button`
   position: absolute;
-  top: -100%;
-  left: 50%;
   transform: translate(-50%, -50%);
   width: 140px;
   height: 50px;
@@ -12,6 +10,17 @@ export const MapBtn = styled.button`
   background-color: #232323;
   border-radius: 25px;
   border: none;
+
+  ${props =>
+    props.isMapOpen
+      ? css`
+          top: -90%;
+          left: 50%;
+        `
+      : css`
+          top: -90%;
+          left: 50%;
+        `}
 `;
 
 export const MapBtnSpan = styled.span`

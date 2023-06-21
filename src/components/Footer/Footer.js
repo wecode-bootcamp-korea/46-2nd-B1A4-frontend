@@ -37,7 +37,7 @@ const Footer = () => {
 
   return (
     <S.StyleFooter>
-      <S.MapBtn onClick={() => handleNav(!isMapOpen)}>
+      <S.MapBtn isMapOpen={isMapOpen} onClick={() => handleNav(!isMapOpen)}>
         <S.MapBtnSpan>{isMapOpen ? '목록 보기' : '지도 보기'}</S.MapBtnSpan>
         <FontAwesomeIcon icon={isMapOpen ? faListUl : faMap} />
       </S.MapBtn>

@@ -35,7 +35,6 @@ export const BoldSpan = styled.span`
 `;
 
 export const Header = styled.div`
-  z-index: 1;
   position: sticky;
   top: 0;
   background-color: white;

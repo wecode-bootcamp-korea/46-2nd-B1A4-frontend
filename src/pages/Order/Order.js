@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import OrderRevModal from '../../components/Modal/OrderRevModal';
 import { nanoid } from 'nanoid';
-import { PAY_METHOD } from '../../uiData/orderData';
-import { date, count } from '../../recoilState';
+import { PAY_METHOD, SIMPLE_PAY_METHOD, PHONE_F } from '../../uiData/orderData';
+import { date, count, time, allTime } from '../../recoilState';
 import * as S from './StyleOrder';
 
 const Order = () => {
@@ -16,8 +16,18 @@ const Order = () => {
   const [method, setMethod] = useState('');
   const [selectedDate, setSelectedDate] = useRecoilState(date);
   const [guestCount, setGuestCount] = useRecoilState(count);
-  const [time, setTime] = useState([]);
+  const [selectedTime, setSelectedTime] = useRecoilState(time);
   const [studioData, setStudioData] = useState({});
+  const [userPhone, setUserPhone] = useState({});
+  const [addPhone, setAddPhone] = useState(false);
+  const [isPhoneUpdate, setIsPhoneUpdate] = useState(false);
+
+  const [inputValues, setInputValues] = useState({
+    phoneFir: '',
+    phoneSec: '',
+    phoneThr: '',
+  });
+
   const navigate = useNavigate();
 
   const params = useParams();
@@ -39,6 +49,10 @@ const Order = () => {
     setIsOpenModal(prev => !prev);
   };
   const handleTossApi = () => {
+    const amount = studioData.studioPrice.toLocaleString().split('.');
+    const bookingDate = selectedDate.toISOString().split('T');
+    const timeSlot = `[${selectedTime}]`;
+
     fetch('https://api.tosspayments.com/v1/payments', {
       method: 'POST',
       headers: {
@@ -48,10 +62,14 @@ const Order = () => {
       },
       body: JSON.stringify({
         method: method,
-        amount: 100,
+        amount: Number(amount[0]),
         orderId: nanoid(),
-        orderName: '연남최대 스튜디오',
-        successUrl: `http://localhost:3000/order/${studioId}/req_success`,
+        orderName: studioData.studioName,
+        successUrl: `http://localhost:3000/order/${studioId}/req_success?amount=${Number(
+          amount[0]
+        )}&guest=${guestCount}&timeSlot=${timeSlot}&bookingDate=${
+          bookingDate[0]
+        }`,
         failUrl: `http://localhost:3000/order/${studioId}/req_fail`,
       }),
     })
@@ -64,28 +82,73 @@ const Order = () => {
   };
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_HOST}/studios/details/1`)
+    fetch(`${process.env.REACT_APP_SERVER_HOST}/studios/details/${studioId}`)
       .then(response => response.json())
       .then(result => {
         setStudioData(result.data);
       });
   }, []);
 
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_SERVER_HOST}/users/phone`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('accessToken'),
+      },
+    })
+      .then(response => response.json())
+      .then(result => {
+        setUserPhone(result.data);
+      });
+  }, [isPhoneUpdate]);
+
   const handleMainLink = () => {
     navigate('/main');
   };
 
   const ShowTime = () => {
-    if (time.length === 0) {
+    if (selectedTime.length === 0) {
       return '시간선택';
-    } else if (time[1] === null) {
-      return `${time[0]}:00 ~ ${time[0] + 1}:00`;
+    } else if (selectedTime[1] === null) {
+      return `${selectedTime[0]}:00 ~ ${selectedTime[0] + 1}:00`;
     } else {
-      return `${time[0]}:00 ~ ${time[1] + 1}:00`;
+      return `${selectedTime[0]}:00 ~ ${selectedTime[1] + 1}:00`;
     }
   };
 
+  const handlePhoneInput = e => {
+    const { name, value } = e.target;
+    setInputValues({ ...inputValues, [name]: value });
+  };
+
+  const savePhoneInput = () => {
+    if (inputValues.phoneFir === null) {
+      setInputValues({ ...inputValues, [inputValues.phoneFir]: '010' });
+    }
+    const phone =
+      inputValues.phoneFir + inputValues.phoneSec + inputValues.phoneThr;
+
+    fetch(`${process.env.REACT_APP_SERVER_HOST}/bookings/phone`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('accessToken'),
+      },
+      method: 'PATCH',
+      body: JSON.stringify({
+        userPhoneNumber: phone,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => {
+        if (result.message === 'USER_PHONE_NUMBER_UPDATE_SUCCESS') {
+          alert('정상적으로 저장되었습니다');
+          setIsPhoneUpdate(prev => !prev);
+        }
+      });
+  };
+
   if (!studioData.studioImages) return null;
+  if (!userPhone.length) return null;
 
   return (
     <S.StyleOrder>
@@ -150,22 +213,100 @@ const Order = () => {
                       </S.MethodBtn>
                     );
                   })}
+                  {SIMPLE_PAY_METHOD.map(pay => {
+                    return (
+                      <S.SimpleMethodBtn
+                        imgUrl={pay.imgUrl}
+                        key={pay.id}
+                        onClick={() => {
+                          handleMethod(pay.id, pay.method);
+                        }}
+                        isActive={pay.id === selectMethod}
+                      />
+                    );
+                  })}
                 </S.RevTop>
               </S.OrderDiv>
-              <S.OrderDiv>
-                <S.MidSpan>필수 입력 정보</S.MidSpan>
-                <S.RevTop>
-                  <S.TopInnerLeft>
-                    <S.SmallDiv>전화번호</S.SmallDiv>
-                    <S.ThinDiv>
-                      여행 업데이트를 받으려면 전화번호를 입력하고 인증해주세요
-                    </S.ThinDiv>
-                  </S.TopInnerLeft>
-                  <S.TopInnerRight>
-                    <S.AddBtn>추가</S.AddBtn>
-                  </S.TopInnerRight>
-                </S.RevTop>
-              </S.OrderDiv>
+              {!userPhone[0].phoneNumber && (
+                <S.OrderDiv>
+                  <S.MidSpan>필수 입력 정보</S.MidSpan>
+
+                  <S.RevTop>
+                    <S.TopInnerLeft>
+                      <S.SmallDiv>전화번호</S.SmallDiv>
+                      <S.ThinDiv>
+                        여행 업데이트를 받으려면 전화번호를 입력하고
+                        인증해주세요
+                      </S.ThinDiv>
+                    </S.TopInnerLeft>
+                    <S.TopInnerRight>
+                      {!addPhone && (
+                        <S.AddBtn
+                          onClick={() => {
+                            setAddPhone(prev => !prev);
+                          }}
+                        >
+                          추가
+                        </S.AddBtn>
+                      )}
+                    </S.TopInnerRight>
+                  </S.RevTop>
+                  {addPhone && (
+                    <S.RevTop>
+                      <S.TopInnerLeft>
+                        <S.PhoneSelect
+                          onChange={handlePhoneInput}
+                          name="phoneFir"
+                        >
+                          {PHONE_F.map(phone => {
+                            return (
+                              <option key={phone.id}>{phone.value}</option>
+                            );
+                          })}
+                        </S.PhoneSelect>
+                        -
+                        <S.PhoneInput
+                          maxLength="4"
+                          name="phoneSec"
+                          onChange={handlePhoneInput}
+                        />
+                        -
+                        <S.PhoneInput
+                          maxLength="4"
+                          name="phoneThr"
+                          onChange={handlePhoneInput}
+                        />
+                      </S.TopInnerLeft>
+                      <S.TopInnerRight>
+                        <S.PhoneBtn onClick={savePhoneInput}>저장</S.PhoneBtn>
+                      </S.TopInnerRight>
+                    </S.RevTop>
+                  )}
+                </S.OrderDiv>
+              )}
+              {userPhone[0].phoneNumber && (
+                <S.OrderDiv>
+                  <S.MidSpan>필수 입력 정보</S.MidSpan>
+
+                  <S.RevTop>
+                    <S.TopInnerLeft>
+                      <S.SmallDiv>전화번호</S.SmallDiv>
+                      <S.SmallDiv>
+                        {userPhone[0].phoneNumber.substr(0, 3) +
+                          '-' +
+                          userPhone[0].phoneNumber.substr(3, 4) +
+                          '-' +
+                          userPhone[0].phoneNumber.substr(7, 4)}
+                      </S.SmallDiv>
+                    </S.TopInnerLeft>
+                    <S.TopInnerRight>
+                      <S.PhoneSaveBtn>
+                        <FontAwesomeIcon icon={faCircleCheck} />
+                      </S.PhoneSaveBtn>
+                    </S.TopInnerRight>
+                  </S.RevTop>
+                </S.OrderDiv>
+              )}
               <S.OrderDiv>
                 <S.MidSpan>환불 정책</S.MidSpan>
                 <S.RevTop>
@@ -198,7 +339,7 @@ const Order = () => {
           <S.OrderRight>
             <S.OrderRightInner>
               <S.Header>
-                <S.ImgDiv imgSrc={studioData.studioImages[1]} />
+                <S.ImgDiv imgSrc={studioData.studioImages[0]} />
                 <S.HeaderInner>
                   <S.H2>{studioData.studioName}</S.H2>
                   <S.DescDiv>{studioData.studioAddress}</S.DescDiv>
@@ -233,6 +374,7 @@ const Order = () => {
         <OrderRevModal
           isOpenModal={isOpenModal}
           handleModal={handleRevUpdate}
+          studioId={studioId}
         />
       )}
     </S.StyleOrder>

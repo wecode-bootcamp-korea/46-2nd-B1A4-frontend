@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import CircularIndeterminate from '../../pages/Loading/Spinner';
 import {
   LoadingContainer,
@@ -8,20 +8,22 @@ import {
 
 export default function ReqSuccess() {
   const [searchParams] = useSearchParams();
+  const params = useParams();
+  const studioId = params.id;
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_SERVER_HOST}/bookings/payment`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('accessToken'),
       },
       body: JSON.stringify({
-        studioId: 1,
-        userId: 7,
-        startTime: '2023-06-25 14:00:00',
-        endTime: '2023-06-25 15:00:00',
-        totalPrice: 100,
-        totalGuest: 4,
+        studioId: studioId,
+        bookingDate: searchParams.get('bookingDate'),
+        timeSlot: searchParams.get('timeSlot'),
+        totalPrice: searchParams.get('amount'),
+        totalGuest: searchParams.get('guest'),
         paymentKey: searchParams.get('paymentKey'),
         amount: searchParams.get('amount'),
         orderId: searchParams.get('orderId'),
@@ -38,7 +40,7 @@ export default function ReqSuccess() {
           )
             .then(res => res.json())
             .then(rep => {
-              window.location.href = `/order/res_success?bookingId=${result.data}`;
+              window.location.href = `/order/${studioId}/res_success?bookingId=${result.data}`;
             });
         }
       });

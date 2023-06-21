@@ -5,6 +5,7 @@ import RangeSlider from '../RangeSlider/RangeSlider';
 import { ROOM_PROVIDE, ROOM_TYPE } from '../../uiData/roomData';
 import * as S from './StyleFilter';
 import CheckBox from '../CheckBox/CheckBox';
+import useLockBodyScroll from '../../hooks/useLockBodyScroll';
 
 const Filter = ({ isOpenModal, handleModal }) => {
   const [isAdd, setIsAdd] = useState(6);
@@ -42,6 +43,8 @@ const Filter = ({ isOpenModal, handleModal }) => {
         setStudioDataList(result.data);
       });
   }, []);
+
+  useLockBodyScroll();
 
   return (
     <S.StyleFilter>

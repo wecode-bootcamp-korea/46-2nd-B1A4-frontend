@@ -5,7 +5,7 @@ import Detail from './pages/Detail/Detail';
 import Order from './pages/Order/Order';
 import Main from './pages/Main/Main';
 import Footer from './components/Footer/Footer';
-import MyPage from './pages/MyPgae/MyPage';
+import MyPage from './pages/MyPage/MyPage';
 import Loading from './pages/Loading/Loading';
 import Wishlist from './pages/Wishlist/Wishlist';
 import ReqSuccess from './components/Toss/ReqSuccess';
