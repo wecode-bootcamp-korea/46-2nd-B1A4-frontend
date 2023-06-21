@@ -1,39 +1,18 @@
 import React, { useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMap, faListUl } from '@fortawesome/free-solid-svg-icons';
-import DetailFooter from './DetailFooter';
 import FooterDataModal from '../Modal/FooterDataModal';
 import { ETC, RIGHT_ETC } from '../uiData/footerConstData';
-import * as S from './StyleFooter';
+import * as S from './StyleDetailFooter';
 
-const Footer = () => {
+const DetailFooter = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const location = useLocation();
-  const isMapOpen = searchParams.get('map_open') === 'true';
-
-  if (location.pathname === '/detail' || location.pathname === '/order') {
-    return <DetailFooter />;
-  }
 
   const handleModal = () => {
     setIsOpenModal(prev => !prev);
   };
 
-  const handleNav = value => {
-    searchParams.set('map_open', value);
-    setSearchParams(searchParams);
-  };
-
   return (
     <S.StyleFooter>
-      <S.MapBtn onClick={() => handleNav(!isMapOpen)}>
-        <S.MapBtnSpan>{isMapOpen ? '목록 보기' : '지도 보기'}</S.MapBtnSpan>
-        <FontAwesomeIcon icon={isMapOpen ? faListUl : faMap} />
-      </S.MapBtn>
-      <S.FooterContainer isMapOpen={isMapOpen}>
+      <S.FooterContainer>
         <S.FooterInner>
           <S.FooterWrapper>
             <S.FooterWrapperDiv>
@@ -85,4 +64,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default DetailFooter;

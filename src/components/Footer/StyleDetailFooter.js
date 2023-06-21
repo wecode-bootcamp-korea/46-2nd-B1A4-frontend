@@ -1,48 +1,15 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const MapBtn = styled.button`
-  position: absolute;
-  top: -100%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 140px;
-  height: 50px;
-  color: white;
-  background-color: #232323;
-  border-radius: 25px;
-  border: none;
-`;
-
-export const MapBtnSpan = styled.span`
-  margin-right: 10px;
-`;
-
-export const MapBtnLink = styled(Link)`
-  text-align: center;
-  text-decoration: none;
-  color: inherit;
-`;
-
 export const StyleFooter = styled.div`
-  z-index: 999;
-  position: fixed;
+  background-color: #f4f4f4;
   width: 100%;
-  bottom: 0px;
-  padding: 0px 20px;
 `;
 
 export const FooterContainer = styled.div`
-  ${props =>
-    props.isMapOpen
-      ? css`
-          visibility: hidden;
-        `
-      : css`
-          background-color: white;
-          visibility: visible;
-        `}
   border-top: 1px solid #ebebeb;
+  max-width: 1100px;
+  margin: 0 auto;
 `;
 
 export const FooterInner = styled.div`
