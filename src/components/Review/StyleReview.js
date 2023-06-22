@@ -1,16 +1,12 @@
 import styled, { css } from 'styled-components';
 
 export const StyleReview = styled.div`
-  margin-bottom: 20px;
-`;
-export const ReviewHeader = styled.div`
-  margin: 20px 0px;
+  margin: -24px 0;
 `;
 
 export const Title = styled.h1`
   font-size: 26px;
   font-weight: 600;
-  padding-top: 24px;
 `;
 
 export const H2 = styled.h2`
@@ -69,6 +65,10 @@ export const MoreSpan = styled.span`
   font-weight: 500;
   font-size: 15px;
   border-bottom: 1px solid black;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const BodyWrapper = styled.div`
@@ -108,12 +108,16 @@ export const ReviewInner = styled.div`
 export const ReviewBtn = styled.button`
   padding: 13px 15px;
   border: none;
-  background-color: white;
+  color: white;
   border-radius: 7px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
-  color: ${props => props.theme.primaryColor};
+  background-color: ${props => props.theme.primaryColor};
   border: 1px solid ${props => props.theme.primaryColor};
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const ReviewFooter = styled.div``;

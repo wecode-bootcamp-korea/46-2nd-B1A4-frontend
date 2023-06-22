@@ -1,24 +1,55 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import * as S from './StyleDetail';
+import { useParams } from 'react-router-dom';
+import Review from '../../components/Review/Review';
 import Calendar from './component/DayPicker';
 import TimePicker from './component/TimePicker';
 import Map from './component/Map';
 import { date, count } from '../../recoilState';
+import * as S from './StyleDetail';
 
 const Detail = () => {
   const [selectedDate, setSelectedDate] = useRecoilState(date);
   const [guestCount, setGuestCount] = useRecoilState(count);
   const [isModalShow, setIsModalShow] = useState(false);
   const [isCountModalShow, setIsCountModalShow] = useState(false);
-  const [detailData, setDetailData] = useState({});
+  const [detailsData, setDetailsData] = useState({});
   const [time, setTime] = useState([]);
+  // const [count, setCount] = useState(0);
+  const { id } = useParams();
 
+  const {
+    hostName,
+    profileImage,
+    studioName,
+    studioPrice,
+    maxGuests,
+    studioAddress,
+    studioDescription,
+    studioRules,
+    locationLatitude,
+    locationLongitude,
+    amenities,
+    studioImages,
+    booking_number,
+  } = detailsData;
+
+  // 추후 mockData 통신
   useEffect(() => {
     fetch('/data/detailData.json')
       .then(res => res.json())
-      .then(detailData => setDetailData(detailData.description[0]));
+      .then(data => {
+        setDetailsData(data.data);
+      });
   }, []);
+
+  // useEffect(() => {
+  //   fetch(`http://10.58.52.71:8000/studios/details/${id}`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setDetailsData(data.data);
+  //     });
+  // }, []);
 
   const handleModalBtn = () => {
     setIsModalShow(prev => !prev);
@@ -61,20 +92,20 @@ const Detail = () => {
     }
   };
 
-  if (!detailData.studio_images) return null;
+  if (!studioImages) return null;
   return (
     <>
       <S.Container>
         <S.Main>
-          <S.Title>{detailData.studio_name}</S.Title>
-          <S.Ptag>{detailData.address}</S.Ptag>
+          <S.Title>{studioName}</S.Title>
+          <S.Ptag>{studioAddress}</S.Ptag>
           <S.ImgBox>
-            <S.MainImg src={detailData.studio_images[4]} />
+            <S.MainImg src={studioImages[0]} />
             <S.SubImgBox>
-              <S.SubImg src={detailData.studio_images[1]} />
-              <S.BorderTopImg src={detailData.studio_images[2]} />
-              <S.SubImg src={detailData.studio_images[3]} />
-              <S.BorderBottomImg src={detailData.studio_images[0]} />
+              <S.SubImg src={studioImages[1]} />
+              <S.BorderTopImg src={studioImages[0]} />
+              <S.SubImg src={studioImages[1]} />
+              <S.BorderBottomImg src={studioImages[0]} />
             </S.SubImgBox>
           </S.ImgBox>
         </S.Main>
@@ -83,23 +114,22 @@ const Detail = () => {
             <S.ProfileBox>
               <div>
                 <S.Title>
-                  {detailData.host_name} 님이 호스팅하는{' '}
-                  {detailData.studio_name}
+                  {hostName} 님이 호스팅하는 {studioName}
                 </S.Title>
-                <S.Ptag>최대 인원 {detailData.max_guests}명</S.Ptag>
+                <S.Ptag>최대 인원 {maxGuests}명</S.Ptag>
               </div>
-              <S.ProfileImg src={detailData.profile_image} />
+              <S.ProfileImg src={profileImage} />
             </S.ProfileBox>
             <S.Infor>
-              {detailData.description.map(content => {
-                return <S.Ptag key={content.id}>{content}</S.Ptag>;
+              {studioDescription.split('\n').map(content => {
+                return <S.Ptag key={content.id}>{`- ${content}`}</S.Ptag>;
               })}
             </S.Infor>
             <S.Title>편의시설</S.Title>
-            {detailData.amenities.map(amenitiesData => {
+            {amenities.map(amenitiesData => {
               return (
                 <S.Notification key={amenitiesData.id}>
-                  <S.IconImg src={amenitiesData.icon_img} />
+                  <S.IconImg src={amenitiesData.imgIcon} />
                   <div>
                     <S.Ptag>{amenitiesData.title}</S.Ptag>
                     <S.Ptag>{amenitiesData.content}</S.Ptag>
@@ -118,7 +148,7 @@ const Detail = () => {
           </S.DescriptionBox>
           <S.PriceBox>
             <S.SubTitle>
-              ₩{Number(detailData.price_per_hour).toLocaleString('en')}/시간
+              ₩{Number(studioPrice).toLocaleString('en')}/시간
             </S.SubTitle>
             <S.SubTitle>요금을 확인하려면 날짜와 시간을 입력하세요.</S.SubTitle>
             <S.CheckBox>
@@ -175,18 +205,18 @@ const Detail = () => {
             </S.ModalBtn>
           </S.PriceBox>
         </S.DescriptionContainer>
+        <S.DescriptionContainer>
+          <Review />
+        </S.DescriptionContainer>
         <S.MapContainer>
           <S.Title>호스팅 지역</S.Title>
-          <Map
-            latitude={detailData.location_latitude}
-            longitude={detailData.location_longitude}
-          />
+          <Map latitude={locationLatitude} longitude={locationLongitude} />
         </S.MapContainer>
         <S.PrecautionsContainer>
           <S.Title>예약시 주의사항</S.Title>
           <S.BorderColor />
-          {detailData.rules.map(data => {
-            return <S.Text key={data.id}>{data}</S.Text>;
+          {studioRules.split('\n').map(data => {
+            return <S.Text key={data.id}>{`- ${data}`}</S.Text>;
           })}
         </S.PrecautionsContainer>
         <S.PrecautionsContainer>
@@ -209,7 +239,6 @@ const Detail = () => {
             );
           })}
         </S.PrecautionsContainer>
-        <S.ExampleBox />
       </S.Container>
       {isModalShow && (
         <S.Modal>
@@ -223,10 +252,7 @@ const Detail = () => {
               />
             </S.FlexBox>
 
-            <TimePicker
-              setTime={setTime}
-              bookingNum={detailData.booking_number}
-            />
+            <TimePicker setTime={setTime} bookingNum={booking_number} />
             <S.ModalBtn
               onClick={() => {
                 setIsModalShow(false);

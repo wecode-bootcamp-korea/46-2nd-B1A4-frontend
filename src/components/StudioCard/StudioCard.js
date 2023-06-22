@@ -13,7 +13,7 @@ const StudioCard = ({ list, settings }) => {
       <S.WishBtn onClick={handleWishBtn}>
         {isWishlistAdd ? <S.FillHeart /> : <S.OutlineHeart />}
       </S.WishBtn>
-      <S.StyledLink to={'/detail'}>
+      <S.StyledLink to={`/detail/${list.id}`}>
         <S.StyledSlider {...settings}>
           {list.image_url.map(img => {
             return <S.ImgBox key={list.id} src={img} />;

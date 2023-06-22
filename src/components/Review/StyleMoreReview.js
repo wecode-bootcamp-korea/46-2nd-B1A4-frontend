@@ -29,6 +29,10 @@ export const CloseBtn = styled.button`
   border: none;
   outline: none;
   margin-bottom: 30px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const H2 = styled.h2`

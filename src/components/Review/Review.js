@@ -36,7 +36,7 @@ const Review = () => {
 
   return (
     <S.StyleReview>
-      <S.ReviewHeader>
+      <div>
         <S.Title>
           <S.Star>
             <FontAwesomeIcon icon={faStar} />
@@ -45,7 +45,7 @@ const Review = () => {
             {reviewInfo[0].averageRating} · 후기 {reviewInfo[0].ratingCount}개
           </S.ReviewCountSpan>
         </S.Title>
-      </S.ReviewHeader>
+      </div>
       {reviewInfo.map(review => {
         return review.userReview.slice(0, 6).map((user, idx) => {
           return (

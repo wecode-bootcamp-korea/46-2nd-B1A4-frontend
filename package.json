@@ -21,6 +21,7 @@
     "@testing-library/user-event": "^13.5.0",
     "date-fns": "^2.30.0",
     "daum-map-api": "^1.0.2",
+    "dotenv": "^16.3.1",
     "env-cmd": "^10.1.0",
     "react": "^18.2.0",
     "react-calendar": "^4.3.0",
