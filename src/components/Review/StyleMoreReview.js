@@ -1,21 +1,39 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const StyleReview = styled.div`
-  margin-bottom: 20px;
+  height: 90vh;
+  padding-bottom: 60px;
 `;
 export const ReviewHeader = styled.div`
-  margin: 20px 0px;
+  z-index: 1;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  width: 100%;
+  border-radius: 15px 15px 0px 0px;
+  padding: 20px;
+`;
+export const BoldSpan = styled.span`
+  font-weight: 600;
+  font-size: 14px;
 `;
 
-export const Title = styled.h1`
-  font-size: 26px;
-  font-weight: 600;
-  padding-top: 24px;
+export const HeaderDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+`;
+
+export const CloseBtn = styled.button`
+  background-color: white;
+  border: none;
+  outline: none;
+  margin-bottom: 30px;
 `;
 
 export const H2 = styled.h2`
-  font-weight: 600;
-  font-size: 18px;
+  font-weight: 700;
+  font-size: 30px;
 `;
 
 export const Star = styled.span`
@@ -26,49 +44,52 @@ export const ReviewCountSpan = styled.span`
   margin-left: 10px;
 `;
 
+export const SearchDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f4f4f4;
+  border: 1px solid #f4f4f4;
+  border-radius: 25px;
+  width: 100%;
+  margin-top: 20px;
+  padding-left: 20px;
+`;
+
+export const SearchInput = styled.input`
+  padding: 15px 10px;
+  border: none;
+  background-color: #f4f4f4;
+  outline: none;
+  width: 95%;
+`;
+
+export const Body = styled.div`
+  height: 76%;
+  min-width: 340px;
+  overflow-y: scroll;
+`;
+
 export const ReviewBody = styled.div`
-  display: inline-block;
   padding: 20px;
-  width: 50%;
+  width: 100%;
 `;
 
 export const UserReview = styled.div`
   margin-top: 20px;
-  margin-bottom: 40px;
 `;
 
 export const UserReviewInner = styled.div`
   font-weight: 300;
   font-size: 15px;
   line-height: 1.3;
-  height: 60px;
-  overflow: hidden;
-  white-space: normal;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  word-break: keep-all;
+  height: 100%;
 `;
 
-const showBtn = css`
-  display: block;
-  visibility: visible;
-`;
-
-export const AddBtn = styled.button`
-  top: 20px;
-  display: none;
-  border: none;
-  background-color: white;
-  padding: 0;
-  ${props => props.isOverFlow && showBtn}
-`;
-
-export const MoreSpan = styled.span`
-  font-weight: 500;
-  font-size: 15px;
-  border-bottom: 1px solid black;
+export const BodyContainer = styled.div`
+  /* display: flex;
+  flex-direction: column; */
 `;
 
 export const BodyWrapper = styled.div`
@@ -89,10 +110,10 @@ export const NameSpan = styled.span`
   font-size: 18px;
 `;
 export const GraySpan = styled.span`
+  margin-top: 3px;
   font-weight: 300;
   font-size: 14px;
   color: gray;
-  margin-top: 3px;
 `;
 
 export const BodyInner = styled.div`

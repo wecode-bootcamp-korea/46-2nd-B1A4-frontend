@@ -1,0 +1,90 @@
+{
+  "data": [
+    {
+      "average_rating": 4.67,
+      "rating_count": 158,
+      "user_review": [
+        {
+          "reviewId": 1,
+          "userReview": "버버버버버버 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다. 버버버버버버 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다. 버버버버버버 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다. 버버버버버버 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다. 버버버버버버 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.",
+          "userName": "Mauricio",
+          "userId": 1,
+          "reviewCreateData": "2023/06/15",
+          "userImg": "images/user1.jpg"
+        },
+        {
+          "reviewId": 2,
+          "userReview": "야야야야야는 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.",
+          "userName": "Mauricio",
+          "userId": 2,
+          "reviewCreateData": "2023/06/15",
+          "userImg": "images/user1.jpg"
+        },
+        {
+          "reviewId": 3,
+          "userReview": "ㄴ누누누누 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.",
+          "userName": "Mauricio",
+          "userId": 3,
+          "reviewCreateData": "2023/06/15",
+          "userImg": "images/user1.jpg"
+        },
+        {
+          "reviewId": 4,
+          "userReview": "니니니니니니니니니니니니니니 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.",
+          "userName": "Mauricio",
+          "userId": 4,
+          "reviewCreateData": "2023/04/15",
+          "userImg": "images/user1.jpg"
+        },
+        {
+          "reviewId": 5,
+          "userReview": "ㄴ아른아른일 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.",
+          "userName": "Mauricio",
+          "userId": 5,
+          "reviewCreateData": "2023/06/15",
+          "userImg": "images/user1.jpg"
+        },
+        {
+          "reviewId": 6,
+          "userReview": "카카카카카키키키키키키키키는 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.카르멜라는 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.카르멜라는 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.카르멜라는 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.카르멜라는 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.",
+          "userName": "Mauricio",
+          "userId": 6,
+          "reviewCreateData": "2023/05/15",
+          "userImg": "images/user1.jpg"
+        },
+        {
+          "reviewId": 7,
+          "userReview": "호호호호호멜라는 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.",
+          "userName": "Mauricio",
+          "userId": 7,
+          "reviewCreateData": "2023/03/15",
+          "userImg": "images/user1.jpg"
+        },
+        {
+          "reviewId": 8,
+          "userReview": "ㅁㄴ움누어무엄ㄴ 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.",
+          "userName": "Mauricio",
+          "userId": 8,
+          "reviewCreateData": "2023/06/15",
+          "userImg": "images/user1.jpg"
+        },
+        {
+          "reviewId": 9,
+          "userReview": "두두두두두두 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.",
+          "userName": "Mauricio",
+          "userId": 9,
+          "reviewCreateData": "2023/06/13",
+          "userImg": "images/user1.jpg"
+        },
+        {
+          "reviewId": 10,
+          "userReview": "다다다다다 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.카르멜라는 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.카르멜라는 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.카르멜라는 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.카르멜라는 매우 친절한 호스트이며, 항상 세심하고 즐거운 대화를 나눕니다.",
+          "userName": "Mauricio",
+          "userId": 10,
+          "reviewCreateData": "2023/06/15",
+          "userImg": "images/user1.jpg"
+        }
+      ]
+    }
+  ]
+}
