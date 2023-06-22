@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Review from '../../components/Review/Review';
 import Calendar from './component/DayPicker';
 import TimePicker from './component/TimePicker';
 import Map from './component/Map';
-import { date, count } from '../../recoilState';
+import { date, count, time, allTime } from '../../recoilState';
 import * as S from './StyleDetail';
 
 const Detail = () => {
   const [selectedDate, setSelectedDate] = useRecoilState(date);
   const [guestCount, setGuestCount] = useRecoilState(count);
+  const [selectedTime, setSelectedTime] = useRecoilState(time);
+  const [selectedAllTime, setSelectedAllTime] = useRecoilState(allTime);
   const [isModalShow, setIsModalShow] = useState(false);
   const [isCountModalShow, setIsCountModalShow] = useState(false);
   const [detailsData, setDetailsData] = useState({});
-  const [time, setTime] = useState([]);
-  // const [count, setCount] = useState(0);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const {
     hostName,
@@ -60,20 +61,12 @@ const Detail = () => {
   };
 
   const ShowTime = () => {
-    if (time.length === 0) {
+    if (selectedTime.length === 0) {
       return '시간선택';
-    } else if (time[1] === null) {
-      return `${time[0]}:00 ~ ${time[0] + 1}:00`;
+    } else if (selectedTime[1] === null) {
+      return `${selectedTime[0]}:00 ~ ${selectedTime[0] + 1}:00`;
     } else {
-      return `${time[0]}:00 ~ ${time[1] + 1}:00`;
-    }
-  };
-
-  const PostTime = () => {
-    if (time[1] === null) {
-      console.log([time[0], time[0] + 1]);
-    } else {
-      console.log([time[0], time[1] + 1]);
+      return `${selectedTime[0]}:00 ~ ${selectedTime[1] + 1}:00`;
     }
   };
 
@@ -89,6 +82,31 @@ const Detail = () => {
         alert('최대인원은 10명 입니다.');
         setGuestCount(10);
       }
+    }
+  };
+
+  const getAllTime = () => {
+    const start = selectedTime[0];
+    const end = selectedTime[1];
+    const newArr = [];
+
+    if (end === null) {
+      newArr.push(start, start + 1);
+    } else {
+      for (let i = start; i <= end + 1; i++) {
+        newArr.push(i);
+      }
+    }
+    setSelectedAllTime(newArr);
+  };
+
+  const preventOrder = () => {
+    if (selectedDate.length === 0 || guestCount === 0) {
+      alert('시간 또는 인원을 선택해주세요');
+      return null;
+    } else {
+      getAllTime();
+      navigate('/order');
     }
   };
 
@@ -154,7 +172,12 @@ const Detail = () => {
             <S.CheckBox>
               <S.CheckDate>
                 <S.CheckText>체크인</S.CheckText>
-                <S.CheckText>{selectedDate.toLocaleDateString()}</S.CheckText>
+                <S.CheckText>
+                  {selectedDate
+                    .toLocaleDateString()
+                    .replace(/\./g, '')
+                    .replace(/\s/g, '-')}
+                </S.CheckText>
               </S.CheckDate>
               <S.CheckTime>
                 <S.CheckText>시간</S.CheckText>
@@ -194,15 +217,7 @@ const Detail = () => {
                 )}
               </S.CheckNum>
             </S.CheckBox>
-            <S.ModalBtn
-              onClick={() => {
-                time.length === 0 && alert('시간을 선택해주세요');
-                guestCount === 0 && alert('인원을 선택해주세요.');
-                PostTime();
-              }}
-            >
-              예약하기
-            </S.ModalBtn>
+            <S.ModalBtn onClick={preventOrder}>예약하기</S.ModalBtn>
           </S.PriceBox>
         </S.DescriptionContainer>
         <S.DescriptionContainer>
@@ -252,7 +267,7 @@ const Detail = () => {
               />
             </S.FlexBox>
 
-            <TimePicker setTime={setTime} bookingNum={booking_number} />
+            <TimePicker setTime={setSelectedTime} bookingNum={booking_number} />
             <S.ModalBtn
               onClick={() => {
                 setIsModalShow(false);

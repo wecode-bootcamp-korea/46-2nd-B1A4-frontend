@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TimeTable } from '../StyleDetail';
 
 const TimePicker = ({ setTime, bookingNum }) => {
@@ -6,7 +6,7 @@ const TimePicker = ({ setTime, bookingNum }) => {
     <TimeTable
       startNum={0}
       endNum={24}
-      maxTime={10}
+      maxTime={24}
       complete={bookingNum}
       onClick={time => setTime(time)}
     />

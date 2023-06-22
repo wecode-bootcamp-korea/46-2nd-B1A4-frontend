@@ -9,3 +9,13 @@ export const count = atom({
   key: 'count',
   default: 0,
 });
+
+export const time = atom({
+  key: 'time',
+  default: [],
+});
+
+export const allTime = atom({
+  key: 'allTime',
+  default: [],
+});
