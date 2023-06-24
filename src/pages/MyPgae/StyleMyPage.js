@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { AiOutlineCheck } from 'react-icons/ai';
 
 export const Container = styled.div`
-  padding: 64px 80px;
+  padding: 200px 80px;
   display: flex;
 `;
 

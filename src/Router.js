@@ -7,6 +7,7 @@ import Main from './pages/Main/Main';
 import Footer from './components/Footer/Footer';
 import MyPage from './pages/MyPgae/MyPage';
 import Loading from './pages/Loading/Loading';
+import Wishlist from './pages/Wishlist/Wishlist';
 
 const Router = () => {
   return (
@@ -17,6 +18,7 @@ const Router = () => {
           <Route path="/main" element={<Main />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/loading" element={<Loading />} />
+          <Route path="/wishlist" element={<Wishlist />} />
         </Route>
         <Route path="/order" element={<Order />} />
       </Routes>

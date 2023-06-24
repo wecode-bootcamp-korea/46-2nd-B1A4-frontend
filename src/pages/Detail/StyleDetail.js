@@ -11,7 +11,7 @@ import {
 import { TimeTableBox } from 'reservation-time-table';
 
 export const Container = styled.div`
-  padding: 0 80px;
+  padding: 80px;
 
   @media screen and (max-width: 860px) {
     padding: 0 40px;

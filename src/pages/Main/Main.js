@@ -44,6 +44,9 @@ const Main = () => {
 
   if (filterData.length === 0) return null;
 
+  // 추후 mockData 통신
+  // if (mockData.length === 0) return null;
+
   return (
     <>
       {/* 추후 mockData 통신 */}
