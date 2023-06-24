@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import {
   faCameraRetro,
   faChampagneGlasses,
@@ -23,10 +24,16 @@ import {
 import Filter from '../Filter/Filter';
 
 const LocalNav = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleModal = () => {
     setIsOpenModal(false);
+  };
+
+  const setCategoryParams = id => {
+    searchParams.set('studioCategoryId', id);
+    setSearchParams(searchParams);
   };
 
   return (
@@ -35,7 +42,12 @@ const LocalNav = () => {
         <LocalNavWrapper>
           {CATEGORY.map(({ id, icon, name }) => {
             return (
-              <LocalNavBox key={id}>
+              <LocalNavBox
+                key={id}
+                onClick={() => {
+                  setCategoryParams(id);
+                }}
+              >
                 <CategoryIcon icon={icon} />
                 <CategoryName>{name}</CategoryName>
               </LocalNavBox>
@@ -92,12 +104,12 @@ const CATEGORY = [
     name: '공유주방',
   },
   {
-    id: 6,
+    id: 7,
     icon: faBuilding,
     name: '공유오피스',
   },
   {
-    id: 6,
+    id: 8,
     icon: faMicrophoneLines,
     name: '보컬연습실',
   },

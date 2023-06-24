@@ -44,7 +44,7 @@ export const ProfileYear = styled.div`
 `;
 
 export const Year = styled.p`
-  font-size: 22px;
+  font-size: 1.4rem;
   font-weight: 700;
 `;
 
@@ -56,24 +56,33 @@ export const ProfileImg = styled.img`
 `;
 
 export const ProfileName = styled.p`
-  font-size: 32px;
+  font-size: 1.7rem;
   font-weight: 500;
 `;
 
 export const ProfileContent = styled.p`
-  font-size: 14px;
+  font-size: 0.9rem;
   font-weight: 500;
+  line-height: 1.2rem;
+  margin-top: 10px;
+`;
+
+export const YearContent = styled.p`
+  font-size: 0.9rem;
+  width: 90px;
+  font-weight: 500;
+  line-height: 1.2rem;
   margin-top: 10px;
 `;
 
 export const Icon = styled(AiOutlineCheck)`
-  font-size: 22px;
+  font-size: 1.3rem;
   margin-right: 20px;
 `;
 
 export const CertifiedBox = styled.div`
   border-radius: 20px;
-  padding: 32px 24px;
+  padding: 32px;
   border: none;
   box-shadow: 3px 3px 15px #b0b0b0;
 `;
@@ -84,11 +93,11 @@ export const Line = styled.div`
 `;
 
 export const Ptag = styled.p`
-  font-size: 22px;
+  font-size: 1.3rem;
 `;
 
 export const Link = styled.p`
-  font-size: 15px;
+  font-size: 1rem;
   padding-top: 30px;
   text-decoration: underline;
 
@@ -107,14 +116,16 @@ export const WritingBox = styled.div`
 
 export const WriteWrap = styled.div`
   width: 60%;
+  min-width: 410px;
   border-top: 1px solid #b0b0b0;
   padding-top: 40px;
 `;
 
 export const SmallPtag = styled.p`
-  font-size: 15px;
-  color: #b0b0b0;
   margin-top: 25px;
+  font-size: 0.9rem;
+  line-height: 1.5rem;
+  color: #b0b0b0;
 `;
 
 export const Button = styled.button`
@@ -125,7 +136,7 @@ export const Button = styled.button`
   width: 40%;
   padding: 15px;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 1rem;
 
   &:hover {
     cursor: pointer;

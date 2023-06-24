@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import Modal from '../Modal/Modal';
@@ -12,6 +12,7 @@ import * as S from './StyleNav';
 const Nav = () => {
   const navRef = useRef();
   const dropDownRef = useRef();
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -39,13 +40,20 @@ const Nav = () => {
   });
 
   const logOut = () => {
-    window.localStorage.clear();
+    fetch(
+      `https://kauth.kakao.com/oauth/logout?client_id=0c4ff5a55e333892a00530fcaf1cfdf9&logout_redirect_uri=http://localhost:3000/loading-logout`
+    ).then(res => {
+      if (res.ok) {
+        navigate('/loading-logout');
+      }
+    });
   };
 
   return (
     <>
       <S.Background
         color={isNavOpen ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0)'}
+        zIndex={isNavOpen ? 200 : ''}
       >
         <S.TotalContainer>
           {showModal && (
@@ -88,6 +96,14 @@ const Nav = () => {
                 <S.DropDownWrapper>
                   <S.DropDownUnit onClick={openModal}>로그인</S.DropDownUnit>
                   <S.DropDownUnit onClick={openModal}>회원가입</S.DropDownUnit>
+                  <S.DropDownUnit
+                    onClick={() => {
+                      navigate('./mypage');
+                    }}
+                  >
+                    마이페이지
+                  </S.DropDownUnit>
+                  <S.DropDownUnit>위시리스트</S.DropDownUnit>
                   <S.DropDownUnit>도움말</S.DropDownUnit>
                   <S.DropDownUnit onClick={logOut}>로그아웃</S.DropDownUnit>
                 </S.DropDownWrapper>
@@ -126,8 +142,6 @@ const Nav = () => {
                       isNavOpen={isNavOpen}
                       navDropDownName={navDropDownName}
                       setNavDropDownName={setNavDropDownName}
-                      width="180px"
-                      height="80px"
                     />
                   </S.NavSearchBarWrapper>
                   <S.SearchIcon size={isNavOpen ? 'large' : 'regular'}>

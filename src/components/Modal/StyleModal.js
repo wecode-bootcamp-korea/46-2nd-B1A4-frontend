@@ -8,7 +8,7 @@ export const Background = styled.div`
   height: 100%;
   padding: 20px;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 100;
+  z-index: 1000;
 `;
 
 export const ModalWrapper = styled.div`

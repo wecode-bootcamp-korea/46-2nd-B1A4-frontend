@@ -37,7 +37,7 @@ const Detail = () => {
 
   // 추후 mockData 통신
   useEffect(() => {
-    fetch('/data/detailData.json')
+    fetch(`${process.env.REACT_APP_SERVER_HOST}/studios/details`)
       .then(res => res.json())
       .then(data => {
         setDetailsData(data.data);

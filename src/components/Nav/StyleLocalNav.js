@@ -6,6 +6,7 @@ export const LocalNavContainer = styled.div`
   position: sticky;
   top: 80px;
   width: 100%;
+  min-width: 780px;
   height: 70px;
   padding: 0 90px;
   background-color: white;
@@ -21,6 +22,7 @@ export const LocalNavWrapper = styled.div`
 export const LocalNavBox = styled.div`
   ${props => props.theme.flexBox('column', 'center', 'center')}
   width: 70px;
+  min-width: 70px;
 `;
 
 export const CategoryIcon = styled(FontAwesomeIcon)`
@@ -41,6 +43,7 @@ export const CategoryName = styled.div`
 export const FilterButton = styled.div`
   ${props => props.theme.flexBox('row', 'center', 'center')}
   width: 80px;
+  min-width: 80px;
   height: 45px;
   margin-left: 30px;
   border-radius: 13px;

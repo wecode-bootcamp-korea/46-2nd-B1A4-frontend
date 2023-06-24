@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { DropDownContainer, LocationDropDownBox } from './StyleNavDropDown';
 import useLockBodyScroll from '../../hooks/useLockBodyScroll';
@@ -6,7 +7,8 @@ import Calendar from '../../pages/Detail/component/DayPicker';
 import { date, count } from '../../recoilState';
 import * as S from './StyleNavDropDown';
 
-const NavDropDown = ({ name, width, height }) => {
+const NavDropDown = ({ name }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [selectedDate, setSelectedDate] = useRecoilState(date);
   const [guestCount, setGuestCount] = useRecoilState(count);
 
@@ -20,24 +22,39 @@ const NavDropDown = ({ name, width, height }) => {
   const handleInputCount = e => {
     if (!isNaN(e.target.value)) {
       setGuestCount(Number(e.target.value));
-      if (guestCount > 10) {
+
+      if (e.target.value > 10) {
         alert('최대인원은 10명 입니다.');
         setGuestCount(10);
       }
     }
   };
 
+  const setFilterParams = (type, input) => {
+    searchParams.set(type, input);
+    setSearchParams(searchParams);
+  };
+
   return (
     <>
       {name === 'location' && (
-        <DropDownContainer width={width} height={height}>
+        <DropDownContainer>
           {LOCATION.map(({ id, name }) => {
-            return <LocationDropDownBox key={id}>{name}</LocationDropDownBox>;
+            return (
+              <LocationDropDownBox
+                key={id}
+                onClick={() => {
+                  setFilterParams('studioLocation', name);
+                }}
+              >
+                {name}
+              </LocationDropDownBox>
+            );
           })}
         </DropDownContainer>
       )}
       {name === 'calendar' && (
-        <DropDownContainer width={width} height={height}>
+        <DropDownContainer>
           <Calendar
             selectedDate={selectedDate}
             setSelectedDate={setSelectedDate}
@@ -45,30 +62,28 @@ const NavDropDown = ({ name, width, height }) => {
         </DropDownContainer>
       )}
       {name === 'guestCount' && (
-        <DropDownContainer width={width} height={height}>
+        <DropDownContainer>
           <S.ModalCount>
-            <S.FlexBox>
-              <S.CountBtn
-                onClick={() => {
-                  handleCount(-1);
-                }}
-              >
-                <S.MinusIcon>-</S.MinusIcon>
-              </S.CountBtn>
-              <S.InputBox
-                value={guestCount}
-                onChange={e => {
-                  handleInputCount(e);
-                }}
-              />
-              <S.CountBtn
-                onClick={() => {
-                  handleCount(1);
-                }}
-              >
-                <S.PlusIcon>+</S.PlusIcon>
-              </S.CountBtn>
-            </S.FlexBox>
+            <S.CountBtn
+              onClick={() => {
+                handleCount(-1);
+              }}
+            >
+              <S.PlusMinusIcon>-</S.PlusMinusIcon>
+            </S.CountBtn>
+            <S.InputBox
+              value={guestCount}
+              onChange={e => {
+                handleInputCount(e);
+              }}
+            />
+            <S.CountBtn
+              onClick={() => {
+                handleCount(1);
+              }}
+            >
+              <S.PlusMinusIcon>+</S.PlusMinusIcon>
+            </S.CountBtn>
           </S.ModalCount>
         </DropDownContainer>
       )}

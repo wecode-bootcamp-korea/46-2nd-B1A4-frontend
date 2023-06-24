@@ -11,6 +11,7 @@ import Wishlist from './pages/Wishlist/Wishlist';
 import ReqSuccess from './components/Toss/ReqSuccess';
 import ResSuccess from './components/Toss/ResSuccess';
 import Fail from './components/Toss/Fail';
+import LoadingLogOut from './pages/Loading/Loading-logout';
 
 const Router = () => {
   return (
@@ -21,6 +22,7 @@ const Router = () => {
           <Route path="/main" element={<Main />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/loading" element={<Loading />} />
+          <Route path="/loading-logout" element={<LoadingLogOut />} />
           <Route path="/wishlist" element={<Wishlist />} />
         </Route>
         <Route path="/order/:id" element={<Order />} />

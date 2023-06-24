@@ -8,11 +8,11 @@ const navAnimation = keyframes`
 export const TotalContainer = styled.div`
   position: sticky;
   top: 0;
+  z-index: 100;
 `;
 
 export const NavContainer = styled.div`
   width: 100vw;
-  min-width: 1080px;
   height: 80px;
   background-color: white;
   border-bottom: ${props => props.border};
@@ -25,9 +25,7 @@ export const NavLeft = styled.div`
 `;
 
 export const NavLogo = styled.div`
-  font-size: 1rem;
-  margin: 0 5px;
-
+  margin: 0;
   img {
     height: 70px;
   }
@@ -43,6 +41,9 @@ export const NavWrapper = styled.div`
   cursor: pointer;
   :hover {
     background-color: rgba(221, 221, 221, 0.2);
+  }
+  @media (max-width: 1070px) {
+    display: none;
   }
 `;
 
@@ -64,6 +65,9 @@ export const NavBox = styled.div`
         background-color: rgba(221, 221, 221, 0.3);
       }
     `};
+  @media (max-width: 830px) {
+    padding: 24px 7%;
+  }
 `;
 
 export const NavUnit = styled.div`
@@ -94,6 +98,15 @@ export const NavSearchBar = styled.div`
       width: 100%;
       min-width: 800px;
     `};
+  @media (max-width: 1070px) {
+    margin-right: 13%;
+  }
+  @media (max-width: 830px) {
+    padding-left: 10px;
+    margin: 0 5px;
+    width: 90%;
+    min-width: 300px;
+  }
 `;
 
 const large = css`
@@ -138,7 +151,6 @@ export const SearchBox = styled.div`
   ${props => props.theme.flexBox('column')};
   padding: 0 120px 15px;
   background-color: white;
-  z-index: 10;
 `;
 
 export const SearchUnit = styled.div`
@@ -164,6 +176,10 @@ export const SearchUnit = styled.div`
   :hover::after {
     transform: scaleX(1);
   }
+  @media (max-width: 1070px) {
+    margin-right: 35%;
+    margin-left: 10px;
+  }
 `;
 
 export const Button = styled.button`
@@ -181,6 +197,9 @@ export const Button = styled.button`
   :hover {
     box-shadow: 1px 1px 4px rgba(100, 100, 100, 0.4);
   }
+  @media (max-width: 640px) {
+    display: none;
+  }
 `;
 
 export const NavZoom = styled.div`
@@ -188,10 +207,12 @@ export const NavZoom = styled.div`
   top: 80px;
   width: 100%;
   height: 80px;
-  z-index: 10;
+  z-index: 110;
 `;
 
-export const DropDownContainer = styled.div``;
+export const DropDownContainer = styled.div`
+  z-index: 150;
+`;
 
 export const DropDownWrapper = styled.div`
   position: absolute;
@@ -202,7 +223,6 @@ export const DropDownWrapper = styled.div`
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 0 6px rgba(100, 100, 100, 0.2);
-  z-index: 15;
   cursor: pointer;
 `;
 
@@ -221,5 +241,5 @@ export const Background = styled.div`
   width: 100vw;
   height: 100%;
   background: ${props => props.color};
-  z-index: 2;
+  z-index: ${props => props.zIndex};
 `;

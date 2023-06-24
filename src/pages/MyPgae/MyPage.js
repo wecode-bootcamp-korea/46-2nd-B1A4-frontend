@@ -15,7 +15,7 @@ const MyPage = () => {
             <S.ProfileYear>
               <S.Wrap>
                 <S.Year>3</S.Year>
-                <S.ProfileContent>Space Around 가입 기간(년)</S.ProfileContent>
+                <S.YearContent>Space Around 가입 기간(년)</S.YearContent>
               </S.Wrap>
             </S.ProfileYear>
           </S.ProfileBox>

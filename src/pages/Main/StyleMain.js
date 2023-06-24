@@ -7,12 +7,14 @@ export const MainBackground = styled.div`
 `;
 
 export const Container = styled.div`
+  position: relative;
   margin: 0 0 72px 0;
-  padding: 100px 80px 20px;
+  padding: 170px 80px 20px;
   display: grid;
   column-gap: 25px;
   grid-template-columns: repeat(6, 1fr);
   transition: 0.5s;
+  z-index: 0;
 
   @media screen and (max-width: 1830px) {
     grid-template-columns: repeat(5, 1fr);

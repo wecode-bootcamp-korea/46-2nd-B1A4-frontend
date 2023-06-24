@@ -7,7 +7,7 @@ export const date = atom({
 
 export const count = atom({
   key: 'count',
-  default: 0,
+  default: 1,
 });
 
 export const time = atom({

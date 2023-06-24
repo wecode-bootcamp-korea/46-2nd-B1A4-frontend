@@ -1,4 +1,4 @@
-import styled, { keyframes, css } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const dropDownAnimation = keyframes`
  0% { top: 62px; opacity: 0.1; }
@@ -33,21 +33,14 @@ export const LocationDropDownBox = styled.span`
 `;
 
 export const ModalCount = styled.div`
-  position: absolute;
-  left: 0;
-  border: 1px solid #b0b0b0;
-  border-radius: 20px;
-  width: 100%;
-  height: 130px;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${props => props.theme.flexBox('row', 'center', 'space-between')};
+  width: 180px;
+  padding: 25px 0px;
 `;
 
 export const CountBtn = styled.button`
-  width: 50px;
-  height: 50px;
+  width: 46px;
+  height: 46px;
   border: none;
   color: white;
   font-size: 25px;
@@ -56,11 +49,6 @@ export const CountBtn = styled.button`
   &:hover {
     cursor: pointer;
   }
-`;
-
-export const FlexBox = styled.div`
-  ${props => props.theme.flexBox('row', 'space-between', 'space-between')};
-  width: 150px;
 `;
 
 export const Button = styled.button`
@@ -75,16 +63,12 @@ export const Button = styled.button`
   }
 `;
 
-export const MinusIcon = styled.div`
-  font-size: 25px;
-`;
-
-export const PlusIcon = styled.div`
+export const PlusMinusIcon = styled.div`
   font-size: 25px;
 `;
 
 export const InputBox = styled.input`
-  width: 50%;
+  width: 30%;
   text-align: center;
   border: 1px solid ${props => props.theme.primaryColor};
 

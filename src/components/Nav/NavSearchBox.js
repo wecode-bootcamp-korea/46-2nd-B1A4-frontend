@@ -8,8 +8,6 @@ const NavSearchBox = ({
   isNavOpen,
   navDropDownName,
   setNavDropDownName,
-  width,
-  height,
 }) => {
   const openNavDropDown = name => {
     if (!navDropDownName) setNavDropDownName(name);
@@ -25,9 +23,7 @@ const NavSearchBox = ({
         onClick={() => openNavDropDown(name)}
       >
         {title}
-        {navDropDownName === name && (
-          <NavDropDown name={name} width={width} height={height} />
-        )}
+        {navDropDownName === name && <NavDropDown name={name} />}
       </NavBox>
       {name !== 'guestCount' && <VerticalLine />}
     </>
