@@ -19,3 +19,8 @@ export const allTime = atom({
   key: 'allTime',
   default: [],
 });
+
+export const bookingNumber = atom({
+  key: 'bookingNumber',
+  default: [],
+});

@@ -5,7 +5,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import Calendar from '../Detail/component/DayPicker';
 import TimePicker from '../Detail/component/TimePicker';
 import { useRecoilState } from 'recoil';
-import { date, count, time, allTime } from '../../recoilState';
+import { date, count, time, allTime, bookingNumber } from '../../recoilState';
 
 import * as S from './StyleRevUpdate';
 
@@ -15,10 +15,11 @@ const RevUpdate = ({ isOpenModal, handleModal }) => {
   const [selectedAllTime, setSelectedAllTime] = useRecoilState(allTime);
   const [selectedTime, setSelectedTime] = useRecoilState(time);
   const [detailsData, setDetailsData] = useState({});
+  const bookedArray = useRecoilState(bookingNumber);
   const navigate = useNavigate();
 
   const ShowTime = () => {
-    if (selectedTime.length === 0) {
+    if (selectedAllTime.length === 0) {
       return '시간선택';
     } else if (selectedTime[1] === null) {
       return `${selectedTime[0]}:00 ~ ${selectedTime[0] + 1}:00`;
@@ -107,7 +108,7 @@ const RevUpdate = ({ isOpenModal, handleModal }) => {
               </S.FlexBox>
               <TimePicker
                 setTime={setSelectedTime}
-                // bookingNum={booking_number}
+                bookingNum={bookedArray[0]}
               />
             </S.TimePickerDiv>
           </div>

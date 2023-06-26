@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate, useParams } from 'react-router-dom';
-import Review from '../../components/Review/Review';
 import Calendar from './component/DayPicker';
 import TimePicker from './component/TimePicker';
 import Map from './component/Map';
-import { date, count, time, allTime } from '../../recoilState';
+import Review from '../../components/Review/Review';
+import ShareModal from '../../components/Modal/ShareModal';
+import { date, count, time, allTime, bookingNumber } from '../../recoilState';
 import * as S from './StyleDetail';
 
 const Detail = () => {
@@ -16,8 +17,14 @@ const Detail = () => {
   const [isModalShow, setIsModalShow] = useState(false);
   const [isCountModalShow, setIsCountModalShow] = useState(false);
   const [detailsData, setDetailsData] = useState({});
+  const [isWishClick, setIsWishClick] = useState(false);
+  const [isShareModalShow, setIsShareModalShow] = useState(false);
+  const [focusId, setFocusId] = useState(0);
+  const [bookingTime, setBookingTime] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
+  const inputForm = useRef();
+  const [bookingArray, setBookingArray] = useRecoilState(bookingNumber);
 
   const {
     hostName,
@@ -32,25 +39,39 @@ const Detail = () => {
     locationLongitude,
     amenities,
     studioImages,
-    booking_number,
+    ratingCount,
+    averageRating,
   } = detailsData;
 
   // 추후 mockData 통신
+  // useEffect(() => {
+  //   fetch('/data/detailData.json')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setDetailsData(data.data);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_HOST}/studios/details`)
+    fetch(`${process.env.REACT_APP_SERVER_HOST}/studios/details/${id}`)
       .then(res => res.json())
       .then(data => {
         setDetailsData(data.data);
       });
   }, []);
 
-  // useEffect(() => {
-  //   fetch(`http://10.58.52.71:8000/studios/details/${id}`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setDetailsData(data.data);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_SERVER_HOST}/bookings/time/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        setBookingTime(data.data);
+        setBookingArray(
+          data.data.map(time => {
+            return time.timeSlotId;
+          })
+        );
+      });
+  }, []);
 
   const handleModalBtn = () => {
     setIsModalShow(prev => !prev);
@@ -106,8 +127,23 @@ const Detail = () => {
       return null;
     } else {
       getAllTime();
-      navigate('/order');
+      navigate(`/order/${id}`);
     }
+  };
+
+  const handleWishBtn = () => {
+    setIsWishClick(prev => !prev);
+  };
+
+  const handleShare = focusId => {
+    setIsShareModalShow(prev => !prev);
+    if (focusId) {
+      setFocusId(focusId);
+    }
+  };
+
+  const onMoveToReview = () => {
+    inputForm.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   if (!studioImages) return null;
@@ -116,7 +152,24 @@ const Detail = () => {
       <S.Container>
         <S.Main>
           <S.Title>{studioName}</S.Title>
-          <S.Ptag>{studioAddress}</S.Ptag>
+          <S.FlexBox>
+            <S.Flex>
+              <S.Ptag>
+                <S.Star />
+                {averageRating}
+              </S.Ptag>
+              <S.TitleInfor
+                onClick={onMoveToReview}
+              >{`후기 ${ratingCount}개`}</S.TitleInfor>
+              <S.TitleInfor>{studioAddress}</S.TitleInfor>
+            </S.Flex>
+            <S.Flex>
+              <S.Share />
+              <S.TitleInfor onClick={handleShare}>공유하기</S.TitleInfor>
+              {isWishClick ? <S.FillHeart /> : <S.BlankHeart />}
+              <S.TitleInfor onClick={handleWishBtn}>저장</S.TitleInfor>
+            </S.Flex>
+          </S.FlexBox>
           <S.ImgBox>
             <S.MainImg src={studioImages[0]} />
             <S.SubImgBox>
@@ -217,11 +270,17 @@ const Detail = () => {
                 )}
               </S.CheckNum>
             </S.CheckBox>
-            <S.ModalBtn onClick={preventOrder}>예약하기</S.ModalBtn>
+            <S.ModalBtn
+              onClick={() => {
+                preventOrder();
+              }}
+            >
+              예약하기
+            </S.ModalBtn>
           </S.PriceBox>
         </S.DescriptionContainer>
         <S.DescriptionContainer>
-          <Review />
+          <Review ref={inputForm} />
         </S.DescriptionContainer>
         <S.MapContainer>
           <S.Title>호스팅 지역</S.Title>
@@ -267,7 +326,7 @@ const Detail = () => {
               />
             </S.FlexBox>
 
-            <TimePicker setTime={setSelectedTime} bookingNum={booking_number} />
+            <TimePicker setTime={setSelectedTime} bookingNum={bookingArray} />
             <S.ModalBtn
               onClick={() => {
                 setIsModalShow(false);
@@ -277,6 +336,14 @@ const Detail = () => {
             </S.ModalBtn>
           </S.ModalTime>
         </S.Modal>
+      )}
+      {isShareModalShow && (
+        <ShareModal
+          isOpenModal={isShareModalShow}
+          handleModal={handleShare}
+          setIsShareModalShow={setIsShareModalShow}
+          data={detailsData}
+        />
       )}
     </>
   );

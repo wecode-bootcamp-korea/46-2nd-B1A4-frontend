@@ -10,7 +10,6 @@ const Main = () => {
   const [filterData, setFilterData] = useState([]);
   const [offset, setOffset] = useState(0);
   const [ref, inView] = useInView();
-  const [studioCardData, setStudioCardData] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [isMapOpen, setIsMapOpen] = useState(false);
   const settings = {
@@ -25,32 +24,32 @@ const Main = () => {
   const nextOffset = LIMIT + offset;
 
   // 추후 mockData 통신
-  useEffect(() => {
-    fetch(
-      `${
-        process.env.REACT_APP_SERVER_HOST
-      }/studios/filter?studioCategoryId=1&offset=${
-        nextOffset - 9
-      }&limit=${LIMIT}`
-    )
-      .then(res => res.json())
-      .then(data => {
-        setMockData(data.data);
-      });
-  }, []);
-
   // useEffect(() => {
   //   fetch(
-  //     `http://10.58.52.71:8001/studios/filter?studioCategoryId=1&offset=${
+  //     `${
+  //       process.env.REACT_APP_SERVER_HOST
+  //     }/studios/filter?studioCategoryId=1&offset=${
   //       nextOffset - 9
   //     }&limit=${LIMIT}`
   //   )
   //     .then(res => res.json())
   //     .then(data => {
-  //       setFilterData(prev => prev.concat(data.data));
-  //       setOffset(prev => prev + LIMIT);
+  //       setMockData(data.data);
   //     });
-  // }, [inView]);
+  // }, []);
+
+  useEffect(() => {
+    fetch(
+      `http://10.58.52.175:8000/studios/filter?studioCategoryId=1&offset=${
+        nextOffset - 9
+      }&limit=${LIMIT}`
+    )
+      .then(res => res.json())
+      .then(data => {
+        setFilterData(prev => prev.concat(data.data));
+        setOffset(prev => prev + LIMIT);
+      });
+  }, [inView]);
 
   const params = searchParams.get('map_open');
 
@@ -58,7 +57,7 @@ const Main = () => {
     setIsMapOpen(params === 'true');
   }, [params]);
 
-  // if (!studioCardData.length) return null;
+  if (!filterData.length) return null;
 
   // 추후 mockData 통신
   // if (mockData.length === 0) return null;

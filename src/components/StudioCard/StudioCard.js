@@ -17,7 +17,7 @@ const StudioCard = ({ list, settings }) => {
           <S.HeartImg src="/images/blankheart.png" />
         )}
       </S.WishBtn>
-      <S.StyledLink to={`/detail/${list.id}`}>
+      <S.StyledLink to={`/detail/${list.studioId}`}>
         <S.StyledSlider {...settings}>
           {list.studioImages.map(img => {
             return <S.Img key={list.studioId} src={img} />;

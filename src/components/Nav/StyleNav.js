@@ -239,7 +239,7 @@ export const DropDownUnit = styled.div`
 export const Background = styled.div`
   position: absolute;
   width: 100vw;
-  height: 100%;
+  height: ${props => props.height};
   background: ${props => props.color};
   z-index: ${props => props.zIndex};
 `;

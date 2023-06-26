@@ -54,6 +54,7 @@ const Nav = () => {
       <S.Background
         color={isNavOpen ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0)'}
         zIndex={isNavOpen ? 200 : ''}
+        height={isNavOpen ? '100%' : '0'}
       >
         <S.TotalContainer>
           {showModal && (

@@ -7,11 +7,15 @@ import {
   AiFillCar,
   AiOutlinePlus,
   AiOutlineMinus,
+  AiFillStar,
+  AiOutlineHeart,
+  AiFillHeart,
 } from 'react-icons/ai';
+import { FiShare } from 'react-icons/fi';
 import { TimeTableBox } from 'reservation-time-table';
 
 export const Container = styled.div`
-  padding: 90px 80px 20px;
+  padding: 160px 80px 0px 80px;
 
   @media screen and (max-width: 860px) {
     padding: 0 40px;
@@ -33,6 +37,50 @@ export const Ptag = styled.p`
   font-size: 16px;
   font-weight: 500;
   padding-top: 16px;
+  margin-right: 10px;
+`;
+
+export const TitleInfor = styled(Ptag)`
+  text-decoration: underline;
+  font-size: 18px;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const Flex = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const Star = styled(AiFillStar)`
+  font-size: 15px;
+  position: relative;
+  top: 1px;
+  color: ${props => props.theme.primaryColor};
+`;
+
+export const Share = styled(FiShare)`
+  font-size: 17px;
+  position: relative;
+  top: 6px;
+  right: 3px;
+`;
+
+export const BlankHeart = styled(AiOutlineHeart)`
+  font-size: 17px;
+  position: relative;
+  top: 7px;
+  right: 3px;
+`;
+
+export const FillHeart = styled(AiFillHeart)`
+  font-size: 17px;
+  position: relative;
+  top: 7px;
+  right: 3px;
+  color: red;
 `;
 
 export const SubTitle = styled.p`
@@ -341,14 +389,13 @@ export const MapContainer = styled.div`
   max-width: 1100px;
   margin: 0 auto;
   padding-bottom: 48px;
-  border-bottom: 1px solid #b0b0b0;
 `;
 
 export const PrecautionsContainer = styled.div`
   max-width: 1100px;
   margin: 0 auto;
   padding-bottom: 24px;
-  border-bottom: 1px solid #b0b0b0;
+  border-top: 1px solid #b0b0b0;
 `;
 
 export const BorderColor = styled.div`
