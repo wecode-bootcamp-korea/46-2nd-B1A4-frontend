@@ -23,7 +23,15 @@ const StudioCard = ({ list, settings }) => {
             return <S.Img key={list.studioId} src={img} />;
           })}
         </S.StyledSlider>
-        <S.Title>{list.studioName}</S.Title>
+        <S.Title>
+          {list.studioName}
+          {list.averageRating && (
+            <S.Average>
+              <S.Icon />
+              {list.averageRating}
+            </S.Average>
+          )}
+        </S.Title>
         <S.Content>{list.studioAddress}</S.Content>
         <S.ContentPrice>
           ₩{Number(list.studioPrice).toLocaleString('en')}/시간

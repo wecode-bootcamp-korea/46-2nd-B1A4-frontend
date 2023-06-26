@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { AiFillStar } from 'react-icons/ai';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -28,6 +28,22 @@ export const Title = styled.h1`
   font-weight: 600;
   margin-top: 10px;
   margin-left: 5px;
+`;
+
+export const Average = styled.span`
+  position: absolute;
+  font-weight: 500;
+  font-size: 17px;
+  bottom: 40px;
+  right: 5px;
+`;
+
+export const Icon = styled(AiFillStar)`
+  font-size: 17px;
+  position: absolute;
+  right: 25px;
+  bottom: 2px;
+  color: ${props => props.theme.primaryColor};
 `;
 
 export const Content = styled.p`

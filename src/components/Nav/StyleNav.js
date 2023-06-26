@@ -29,6 +29,10 @@ export const NavLogo = styled.div`
   img {
     height: 70px;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const NavWrapper = styled.div`

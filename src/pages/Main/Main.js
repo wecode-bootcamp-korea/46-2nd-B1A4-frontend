@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
 import { useSearchParams } from 'react-router-dom';
+import { useInView } from 'react-intersection-observer';
 import StudioCard from '../../components/StudioCard/StudioCard';
-import MainMap from './MainMap';
-import { MainBackground, Container } from './StyleMain';
+import { Container, MainBackground } from './StyleMain';
 
 const Main = () => {
-  const [mockData, setMockData] = useState([]);
   const [filterData, setFilterData] = useState([]);
-  const [offset, setOffset] = useState(0);
   const [ref, inView] = useInView();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [isMapOpen, setIsMapOpen] = useState(false);
+  const studioCategoryId = searchParams.get('studioCategoryId');
+
   const settings = {
     dots: true,
     infinite: true,
@@ -20,77 +18,58 @@ const Main = () => {
     slidesToScroll: 1,
   };
 
-  const LIMIT = 9;
-  const nextOffset = LIMIT + offset;
+  const OFFSET = 0;
+  let limit = searchParams.get('limit');
 
   // 추후 mockData 통신
   // useEffect(() => {
-  //   fetch(
-  //     `${
-  //       process.env.REACT_APP_SERVER_HOST
-  //     }/studios/filter?studioCategoryId=1&offset=${
-  //       nextOffset - 9
-  //     }&limit=${LIMIT}`
-  //   )
+  //   fetch(`/data/main.json`)
   //     .then(res => res.json())
   //     .then(data => {
-  //       setMockData(data.data);
+  //       setFilterData(data.data);
   //     });
   // }, []);
 
   useEffect(() => {
+    let currentLimit = inView ? Number(limit) + 9 : limit;
+
     fetch(
-      `http://10.58.52.175:8000/studios/filter?studioCategoryId=1&offset=${
-        nextOffset - 9
-      }&limit=${LIMIT}`
+      `http://10.58.52.145:8000/studios/filter?studioCategoryId=${studioCategoryId}&offset=${OFFSET}&limit=${currentLimit}`
     )
       .then(res => res.json())
       .then(data => {
-        setFilterData(prev => prev.concat(data.data));
-        setOffset(prev => prev + LIMIT);
+        setFilterData(data.data);
       });
-  }, [inView]);
 
-  const params = searchParams.get('map_open');
+    searchParams.set('limit', currentLimit);
+    setSearchParams(searchParams);
+  }, [inView, studioCategoryId]);
 
-  useEffect(() => {
-    setIsMapOpen(params === 'true');
-  }, [params]);
-
-  if (!filterData.length) return null;
-
-  // 추후 mockData 통신
-  // if (mockData.length === 0) return null;
+  if (filterData.length === 0) return null;
 
   return (
     <>
-      {/* 추후 mockData 통신 */}
-      {/* <Container>
-        {mockData &&
-          mockData.map(list => {
+      {/* 추후 mockData 통신 - 무한스크롤 기능 X */}
+      {/* <MainBackground>
+        <Container>
+          {filterData.map(list => {
             return (
               <StudioCard key={list.studioId} list={list} settings={settings} />
             );
           })}
-      </Container> */}
-
+          <div ref={ref}></div>
+        </Container>
+      </MainBackground> */}
+      {/* API 통신 - 무한스크롤 기능 O */}
       <MainBackground>
-        {isMapOpen ? (
-          <MainMap />
-        ) : (
-          <Container>
-            {filterData.map(list => {
-              return (
-                <StudioCard
-                  key={list.studioId}
-                  list={list}
-                  settings={settings}
-                />
-              );
-            })}
-            <div ref={ref}></div>
-          </Container>
-        )}
+        <Container>
+          {filterData.map(list => {
+            return (
+              <StudioCard key={list.studioId} list={list} settings={settings} />
+            );
+          })}
+          <div ref={ref}></div>
+        </Container>
       </MainBackground>
     </>
   );

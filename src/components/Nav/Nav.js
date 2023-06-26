@@ -67,10 +67,12 @@ const Nav = () => {
           )}
           <S.NavContainer border={isNavOpen ? 'none' : '0.5px solid lightgray'}>
             <S.NavLeft>
-              <S.NavLogo>
-                <a href="/main">
-                  <img src="/images/logo_v2.png" alt="logo" />
-                </a>
+              <S.NavLogo
+                onClick={() => {
+                  navigate('/main?limit=9&studioCategoryId=1');
+                }}
+              >
+                <img src="/images/logo_v2.png" alt="logo" />
               </S.NavLogo>
               {!isNavOpen && (
                 <S.NavSearchBar

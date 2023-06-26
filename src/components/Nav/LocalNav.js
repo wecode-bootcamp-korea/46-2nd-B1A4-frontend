@@ -33,6 +33,7 @@ const LocalNav = () => {
 
   const setCategoryParams = id => {
     searchParams.set('studioCategoryId', id);
+    searchParams.set('limit', '9');
     setSearchParams(searchParams);
   };
 

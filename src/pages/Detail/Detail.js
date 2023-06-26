@@ -73,6 +73,14 @@ const Detail = () => {
       });
   }, []);
 
+  useEffect(() => {
+    fetch(`http://10.58.52.145:8000/studios/details/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        setDetailsData(data.data);
+      });
+  }, []);
+
   const handleModalBtn = () => {
     setIsModalShow(prev => !prev);
   };
