@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 export const DatePickerWrapper = styled.div`
   margin-top: 24px;
+  .disabled-day {
+    text-decoration: line-through;
+    color: #888888;
+  }
   .react-datepicker {
     font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Roboto',
       'Helvetica Neue', sans-serif;

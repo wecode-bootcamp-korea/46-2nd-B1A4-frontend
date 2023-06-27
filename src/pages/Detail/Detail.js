@@ -6,6 +6,7 @@ import TimePicker from './component/TimePicker';
 import Map from './component/Map';
 import Review from '../../components/Review/Review';
 import ShareModal from '../../components/Modal/ShareModal';
+import useOnClickOutside from '../../hooks/useOutsideClick';
 import { date, count, time, allTime, bookingNumber } from '../../recoilState';
 import * as S from './StyleDetail';
 
@@ -25,6 +26,10 @@ const Detail = () => {
   const navigate = useNavigate();
   const inputForm = useRef();
   const [bookingArray, setBookingArray] = useRecoilState(bookingNumber);
+  const countRef = useRef();
+  const timeRef = useRef();
+  const scrollDateRef = useRef(null);
+  const scrollMapRef = useRef(null);
 
   const {
     hostName,
@@ -90,7 +95,7 @@ const Detail = () => {
   };
 
   const ShowTime = () => {
-    if (selectedTime.length === 0) {
+    if (selectedTime.length === 0 || selectedTime[0] === -1) {
       return '시간선택';
     } else if (selectedTime[1] === null) {
       return `${selectedTime[0]}:00 ~ ${selectedTime[0] + 1}:00`;
@@ -150,8 +155,20 @@ const Detail = () => {
     }
   };
 
-  const onMoveToReview = () => {
-    inputForm.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  useOnClickOutside(countRef, () => setIsCountModalShow(false));
+
+  useOnClickOutside(timeRef, () => setIsModalShow(false));
+
+  const handleDateClick = () => {
+    if (scrollDateRef.current) {
+      scrollDateRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleMapClick = () => {
+    if (scrollMapRef.current) {
+      scrollMapRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   if (!studioImages) return null;
@@ -166,10 +183,10 @@ const Detail = () => {
                 <S.Star />
                 {averageRating}
               </S.Ptag>
-              <S.TitleInfor
-                onClick={onMoveToReview}
-              >{`후기 ${ratingCount}개`}</S.TitleInfor>
-              <S.TitleInfor>{studioAddress}</S.TitleInfor>
+              <S.TitleInfor>{`후기 ${ratingCount}개`}</S.TitleInfor>
+              <S.TitleInfor onClick={handleMapClick}>
+                {studioAddress}
+              </S.TitleInfor>
             </S.Flex>
             <S.Flex>
               <S.Share />
@@ -217,7 +234,7 @@ const Detail = () => {
               );
             })}
             <S.BorderTop />
-            <div>
+            <div ref={scrollDateRef}>
               <S.Title>예약 날짜를 선택하세요</S.Title>
               <Calendar
                 selectedDate={selectedDate}
@@ -231,7 +248,7 @@ const Detail = () => {
             </S.SubTitle>
             <S.SubTitle>요금을 확인하려면 날짜와 시간을 입력하세요.</S.SubTitle>
             <S.CheckBox>
-              <S.CheckDate>
+              <S.CheckDate onClick={handleDateClick}>
                 <S.CheckText>체크인</S.CheckText>
                 <S.CheckText>
                   {selectedDate
@@ -251,7 +268,7 @@ const Detail = () => {
                   {isCountModalShow ? <S.Arrow /> : <S.ArrowUp />}
                 </S.Button>
                 {isCountModalShow && (
-                  <S.ModalCount>
+                  <S.ModalCount ref={countRef}>
                     <S.FlexBox>
                       <S.CountBtn
                         onClick={() => {
@@ -290,7 +307,7 @@ const Detail = () => {
         <S.DescriptionContainer>
           <Review ref={inputForm} />
         </S.DescriptionContainer>
-        <S.MapContainer>
+        <S.MapContainer ref={scrollMapRef}>
           <S.Title>호스팅 지역</S.Title>
           <Map latitude={locationLatitude} longitude={locationLongitude} />
         </S.MapContainer>
@@ -324,7 +341,7 @@ const Detail = () => {
       </S.Container>
       {isModalShow && (
         <S.Modal>
-          <S.ModalTime>
+          <S.ModalTime ref={timeRef}>
             <S.FlexBox>
               <S.ModalTitle>시간을 선택해주세요</S.ModalTitle>
               <S.CloseIcon

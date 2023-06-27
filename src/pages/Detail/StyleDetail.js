@@ -241,6 +241,10 @@ export const CheckBox = styled.div`
 export const CheckDate = styled.div`
   width: 50%;
   border-right: 1px solid #b0b0b0;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const CheckTime = styled.div`
