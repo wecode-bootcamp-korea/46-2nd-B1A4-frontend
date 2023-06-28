@@ -32,7 +32,7 @@ const Review = () => {
       setFocusId(focusId);
     }
   };
-  if (!reviewInfo.length) return null;
+  if (!reviewInfo?.length) return null;
 
   return (
     <S.StyleReview>

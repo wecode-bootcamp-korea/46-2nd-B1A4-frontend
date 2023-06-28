@@ -59,18 +59,21 @@ export const FooterInner = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  min-width: 600px;
   height: auto;
   padding: 20px 0px;
 `;
 
 export const FooterWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
   flex: 1;
 `;
 
 export const FooterWrapperDiv = styled.div`
   display: flex;
+  flex-wrap: wrap;
   margin-right: auto;
   flex-grow: 1;
   font-weight: 350;

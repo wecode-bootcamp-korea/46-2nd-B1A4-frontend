@@ -42,7 +42,9 @@ export const NotInner = styled.div`
   display: flex;
   flex-direction: row;
 `;
-
+export const WrapperLeftInner = styled.div`
+  color: white;
+`;
 export const WrapperLeft = styled.div`
   width: 50%;
   color: white;
