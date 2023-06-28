@@ -32,7 +32,7 @@ const Loading = () => {
             localStorage.setItem('accessToken', data.accessToken);
             if (data.accessToken) {
               alert('로그인성공! 🚀');
-              navigate('/');
+              navigate('/?limit=9&studioCategoryId=1');
             }
           })
           .catch(err => console.error(err));

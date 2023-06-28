@@ -104,7 +104,7 @@ const Order = () => {
   }, [isPhoneUpdate]);
 
   const handleMainLink = () => {
-    navigate('/');
+    navigate('/?limit=9&studioCategoryId=1');
   };
 
   const ShowTime = () => {

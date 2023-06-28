@@ -14,7 +14,7 @@ export default function ResSuccess() {
   const navigate = useNavigate();
 
   const handleMainLink = () => {
-    navigate('/');
+    navigate('/?limit=9&studioCategoryId=1');
   };
 
   const ShowTime = () => {

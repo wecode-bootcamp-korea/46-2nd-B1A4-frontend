@@ -7,7 +7,7 @@ const NotFound = () => {
   const navigate = useNavigate();
 
   const handleMainLink = () => {
-    navigate('/main');
+    navigate('/?limit=9&studioCategoryId=1');
   };
 
   return (

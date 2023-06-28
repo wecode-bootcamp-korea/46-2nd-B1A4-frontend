@@ -51,13 +51,19 @@ const Nav = () => {
   });
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_HOST}/users`, {
-      headers: {
-        Authorization: localStorage.getItem('accessToken'),
-      },
-    })
-      .then(res => res.json())
-      .then(data => setMyUserInfo(data.data[0]));
+    if (localStorage.getItem('accessToken')) {
+      fetch(`${process.env.REACT_APP_SERVER_HOST}/users`, {
+        headers: {
+          Authorization: localStorage.getItem('accessToken'),
+        },
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data) {
+            setMyUserInfo(data.data[0]);
+          }
+        });
+    }
   }, [isLoggedIn]);
 
   return (
@@ -141,7 +147,13 @@ const Nav = () => {
                       >
                         마이페이지
                       </S.DropDownUnit>
-                      <S.DropDownUnit>위시리스트</S.DropDownUnit>
+                      <S.DropDownUnit
+                        onClick={() => {
+                          navigate('/wishlist');
+                        }}
+                      >
+                        위시리스트
+                      </S.DropDownUnit>
                       <S.DropDownUnit
                         onClick={() => {
                           openDropDown();

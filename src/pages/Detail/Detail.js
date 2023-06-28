@@ -46,15 +46,21 @@ const Detail = () => {
     studioImages,
     ratingCount,
     averageRating,
+    liked,
+    studioId,
   } = detailsData;
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_HOST}/studios/details/${id}`)
+    fetch(`${process.env.REACT_APP_SERVER_HOST}/studios/details/${id}`, {
+      headers: {
+        Authorization: localStorage.getItem('accessToken'),
+      },
+    })
       .then(res => res.json())
       .then(data => {
         setDetailsData(data.data);
       });
-  }, []);
+  }, [isWishClick]);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_SERVER_HOST}/bookings/time/${id}`)
@@ -66,14 +72,6 @@ const Detail = () => {
             return time.timeSlotId;
           })
         );
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_HOST}/studios/details/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        setDetailsData(data.data);
       });
   }, []);
 
@@ -103,8 +101,8 @@ const Detail = () => {
   const handleInputCount = e => {
     if (!isNaN(e.target.value)) {
       setGuestCount(Number(e.target.value));
-      if (guestCount > 10) {
-        alert('최대인원은 10명 입니다.');
+      if (guestCount > maxGuests) {
+        alert(`최대인원은 ${maxGuests}명 입니다.`);
         setGuestCount(10);
       }
     }
@@ -136,7 +134,31 @@ const Detail = () => {
   };
 
   const handleWishBtn = () => {
-    setIsWishClick(prev => !prev);
+    let currentLike = liked;
+
+    if (currentLike === 1) {
+      currentLike = 0;
+    } else {
+      currentLike = 1;
+    }
+
+    fetch(`${process.env.REACT_APP_SERVER_HOST}/users/like`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        Authorization: localStorage.getItem('accessToken'),
+      },
+      body: JSON.stringify({
+        studioId: studioId,
+        liked: currentLike,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === 'USER_LIKE_CHANGE_SUCCESS') {
+          setIsWishClick(prev => !prev);
+        }
+      });
   };
 
   const handleShare = focusId => {
@@ -182,7 +204,7 @@ const Detail = () => {
             <S.Flex>
               <S.Share />
               <S.TitleInfor onClick={handleShare}>공유하기</S.TitleInfor>
-              {isWishClick ? <S.FillHeart /> : <S.BlankHeart />}
+              {liked === 1 ? <S.FillHeart /> : <S.BlankHeart />}
               <S.TitleInfor onClick={handleWishBtn}>저장</S.TitleInfor>
             </S.Flex>
           </S.FlexBox>
@@ -213,7 +235,7 @@ const Detail = () => {
               })}
             </S.Infor>
             <S.Title>편의시설</S.Title>
-            {amenities.map(amenitiesData => {
+            {amenities?.map(amenitiesData => {
               return (
                 <S.Notification key={amenitiesData.id}>
                   <S.IconImg src={amenitiesData.imgIcon} />

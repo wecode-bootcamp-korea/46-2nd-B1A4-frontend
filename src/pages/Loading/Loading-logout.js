@@ -13,7 +13,7 @@ const LoadingLogOut = () => {
       if (res.ok) {
         alert('로그아웃 성공 ☄️');
         localStorage.removeItem('accessToken');
-        navigate('/');
+        navigate('/?limit=9&studioCategoryId=1');
         refreshPage();
       }
     });

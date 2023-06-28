@@ -16,6 +16,12 @@ const Main = () => {
   const [like, setLike] = useRecoilState(isLiked);
   const [isMapOpen, setIsMapOpen] = useState(false);
 
+  useEffect(() => {
+    searchParams.set('limit', 9);
+    searchParams.set('studioCategoryId', 1);
+    setSearchParams(searchParams);
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -25,37 +31,47 @@ const Main = () => {
   };
 
   const OFFSET = 0;
-  const limit = searchParams.get('limit');
+  let limit = searchParams.get('limit');
 
-  useEffect(() => {
-    if (limit) {
-      let currentLimit = inView ? Number(limit) + 9 : limit;
-
+  const getFetch = () => {
+    let currentLimit = inView ? Number(limit) + 9 : limit;
+    if (localStorage.getItem('accessToken')) {
       fetch(
         `${process.env.REACT_APP_SERVER_HOST}/studios/filter?studioCategoryId=${studioCategoryId}&offset=${OFFSET}&limit=${currentLimit}`,
-        {
-          headers: {
-            Authorization: localStorage.getItem('accessToken'),
-          },
-        }
+        { headers: { Authorization: localStorage.getItem('accessToken') } }
       )
         .then(res => res.json())
         .then(data => {
           setFilterData(data.data);
         });
-
-      searchParams.set('limit', currentLimit);
-      setSearchParams(searchParams);
+    } else {
+      fetch(
+        `${process.env.REACT_APP_SERVER_HOST}/studios/filter?studioCategoryId=${studioCategoryId}&offset=${OFFSET}&limit=${currentLimit}`
+      )
+        .then(res => res.json())
+        .then(data => {
+          setFilterData(data.data);
+        });
     }
-  }, [inView, studioCategoryId]);
 
-  const params = searchParams.get('map_open');
+    searchParams.set('limit', currentLimit);
+    setSearchParams(searchParams);
+  };
+
+  // 추후 mockData 통신
+  // useEffect(() => {
+  //   fetch(`/data/main.json`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setFilterData(data.data);
+  //     });
+  // }, []);
 
   useEffect(() => {
-    setIsMapOpen(params === 'true');
-  }, [params]);
+    getFetch();
+  }, [inView, studioCategoryId]);
 
-  if (filterData.length === 0) return null;
+  if (!filterData) return null;
 
   return (
     <MainBackground>
@@ -69,8 +85,7 @@ const Main = () => {
                 key={list.studioId}
                 list={list}
                 settings={settings}
-                isWishlistAdd={isWishlistAdd}
-                setIsWishlistAdd={setIsWishlistAdd}
+                getFetch={getFetch}
               />
             );
           })}

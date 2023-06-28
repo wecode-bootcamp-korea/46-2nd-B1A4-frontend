@@ -1,33 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { isLiked } from '../../recoilState';
+
 import * as S from './StyleStudioCard';
 
-const StudioCard = ({ list, settings, isWishlistAdd, setIsWishlistAdd }) => {
-  const [isLike, setIsLike] = useRecoilState(isLiked);
+const StudioCard = ({ list, settings, getFetch }) => {
+  const [isLiked, setIsLiked] = useState(list.liked);
 
   const handleWishBtn = () => {
-    setIsLike(prev => !prev);
+    if (!localStorage.getItem('accessToken')) {
+      alert('로그인 후 이용해주세요.');
+    } else {
+      fetch(`${process.env.REACT_APP_SERVER_HOST}/users/like`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          Authorization: localStorage.getItem('accessToken'),
+        },
+        body: JSON.stringify({
+          studioId: list.studioId,
+          liked: isLiked,
+        }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.message === 'USER_LIKE_CHANGE_SUCCESS') {
+            setIsLiked(prev => !prev);
+          } else {
+            alert('요청이 실패했습니다.');
+          }
+        });
+    }
   };
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_HOST}/users/like`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-        Authorization: localStorage.getItem('accessToken'),
-      },
-      body: JSON.stringify({
-        studioId: list.studioId,
-        liked: isLike,
-      }),
-    });
-  }, [isLike]);
 
   return (
     <S.Card>
       <S.WishBtn onClick={handleWishBtn}>
-        {isLike ? (
+        {isLiked ? (
           <S.HeartImg src="/images/fillheart.png" />
         ) : (
           <S.HeartImg src="/images/blankheart.png" />
