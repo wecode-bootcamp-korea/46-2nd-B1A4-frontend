@@ -1,17 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { isLiked } from '../../recoilState';
 import * as S from './StyleStudioCard';
 
-const StudioCard = ({ list, settings }) => {
-  const [isWishlistAdd, setIsWishlistAdd] = useState(false);
+const StudioCard = ({ list, settings, isWishlistAdd, setIsWishlistAdd }) => {
+  const [isLike, setIsLike] = useRecoilState(isLiked);
 
   const handleWishBtn = () => {
-    setIsWishlistAdd(prev => !prev);
+    setIsLike(prev => !prev);
   };
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_SERVER_HOST}/users/like`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        Authorization: localStorage.getItem('accessToken'),
+      },
+      body: JSON.stringify({
+        studioId: list.studioId,
+        liked: isLike,
+      }),
+    });
+  }, [isLike]);
 
   return (
     <S.Card>
       <S.WishBtn onClick={handleWishBtn}>
-        {isWishlistAdd ? (
+        {isLike ? (
           <S.HeartImg src="/images/fillheart.png" />
         ) : (
           <S.HeartImg src="/images/blankheart.png" />

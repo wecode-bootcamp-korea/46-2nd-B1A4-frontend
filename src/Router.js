@@ -13,6 +13,9 @@ import ResSuccess from './components/Toss/ResSuccess';
 import Fail from './components/Toss/Fail';
 import LoadingLogOut from './pages/Loading/Loading-logout';
 import NotFound from './pages/NotFound/NotFound';
+import HostSignUp from './pages/Host/HostSignUp';
+import ImageUpload from './pages/Host/ImageUpload';
+import SpaceUpload from './pages/Host/SpaceUpload';
 
 const Router = () => {
   return (
@@ -26,6 +29,9 @@ const Router = () => {
           <Route path="/loading" element={<Loading />} />
           <Route path="/loading-logout" element={<LoadingLogOut />} />
           <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/host-signup" element={<HostSignUp />} />
+          <Route path="/host-upload" element={<SpaceUpload />} />
+          <Route path="/host-image" element={<ImageUpload />} />
         </Route>
         <Route path="/order/:id" element={<Order />} />
         <Route path="/order/:id/req_success" element={<ReqSuccess />} />

@@ -104,7 +104,7 @@ const Order = () => {
   }, [isPhoneUpdate]);
 
   const handleMainLink = () => {
-    navigate('/main');
+    navigate('/');
   };
 
   const ShowTime = () => {
@@ -144,7 +144,7 @@ const Order = () => {
       .then(response => response.json())
       .then(result => {
         if (result.message === 'USER_PHONE_NUMBER_UPDATE_SUCCESS') {
-          alert('정상적으로 저장되었습니다');
+          alert('정상적으로 저장되었습니다 💫');
           setIsPhoneUpdate(prev => !prev);
         }
       });

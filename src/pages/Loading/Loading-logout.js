@@ -7,23 +7,21 @@ const LoadingLogOut = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const access_token = localStorage.getItem('access_token');
-    fetch(`https://kapi.kakao.com/v1/user/logout`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: `Bearer ${access_token}`,
-      },
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.id) {
-          alert('로그아웃 성공 🍔');
-          navigate('/main');
-          localStorage.removeItem('access_token');
-        }
-      });
+    fetch(
+      `https://kauth.kakao.com/oauth/logout?client_id=${process.env.REACT_APP_REST_API_KEY}&logout_redirect_uri=${process.env.REACT_APP_LOGOUT_REDIRECT_URI}`
+    ).then(res => {
+      if (res.ok) {
+        alert('로그아웃 성공 ☄️');
+        localStorage.removeItem('accessToken');
+        navigate('/');
+        refreshPage();
+      }
+    });
   }, []);
+
+  const refreshPage = () => {
+    window.location.reload();
+  };
 
   return (
     <LoadingContainer>

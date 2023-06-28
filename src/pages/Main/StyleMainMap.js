@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
 export const MapContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: ${props => props.width};
+  height: ${props => props.height};
 `;
 
 export const Map = styled.div`

@@ -48,15 +48,6 @@ const Detail = () => {
     averageRating,
   } = detailsData;
 
-  // 추후 mockData 통신
-  // useEffect(() => {
-  //   fetch('/data/detailData.json')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setDetailsData(data.data);
-  //     });
-  // }, []);
-
   useEffect(() => {
     fetch(`${process.env.REACT_APP_SERVER_HOST}/studios/details/${id}`)
       .then(res => res.json())

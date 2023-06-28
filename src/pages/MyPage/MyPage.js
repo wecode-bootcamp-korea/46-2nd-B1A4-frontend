@@ -1,15 +1,20 @@
 import React from 'react';
+import { useRecoilState } from 'recoil';
+import { userInfo } from '../../recoilState';
 import * as S from './StyleMyPage';
 
 const MyPage = () => {
+  const [myUserInfo, setMyUserInfo] = useRecoilState(userInfo);
+  const { userFullName, userEmail, profileImage } = myUserInfo;
+
   return (
     <S.Container>
       <S.Box>
         <S.FlexBox>
           <S.ProfileBox>
             <S.Wrapper>
-              <S.ProfileImg src="/images/room.jpg" />
-              <S.ProfileName>재웅</S.ProfileName>
+              <S.ProfileImg src={profileImage} />
+              <S.ProfileName>{userFullName}</S.ProfileName>
               <S.ProfileContent>게스트</S.ProfileContent>
             </S.Wrapper>
             <S.ProfileYear>

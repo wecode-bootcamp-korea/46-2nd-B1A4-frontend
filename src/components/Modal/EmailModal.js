@@ -18,11 +18,11 @@ const EmailModal = ({ setIsMailModalShow }) => {
       )
       .then(
         result => {
-          alert('전송되었습니다.');
+          alert('전송되었습니다 💌');
           setIsMailModalShow(false);
         },
         error => {
-          alert('전송을 실패했습니다.');
+          alert('전송을 실패했습니다 🥲');
         }
       );
   };

@@ -9,7 +9,7 @@ const Loading = () => {
 
   useEffect(() => {
     fetch(
-      `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=0c4ff5a55e333892a00530fcaf1cfdf9&redirect_uri=http://localhost:3000/loading&code=${code}`,
+      `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${process.env.REACT_APP_REST_API_KEY}&redirect_uri=${process.env.REACT_APP_LOGIN_REDIRECT_URI}&code=${code}`,
       {
         method: 'POST',
         headers: {
@@ -20,8 +20,6 @@ const Loading = () => {
       .then(res => res.json())
       .then(data => {
         const access_token = data.access_token;
-        localStorage.setItem('access_token', data.access_token);
-
         fetch(`${process.env.REACT_APP_SERVER_HOST}/users/kakao`, {
           method: 'POST',
           headers: {
@@ -31,9 +29,10 @@ const Loading = () => {
         })
           .then(res => res.json())
           .then(data => {
+            localStorage.setItem('accessToken', data.accessToken);
             if (data.accessToken) {
-              alert('로그인성공!');
-              navigate('/main');
+              alert('로그인성공! 🚀');
+              navigate('/');
             }
           })
           .catch(err => console.error(err));

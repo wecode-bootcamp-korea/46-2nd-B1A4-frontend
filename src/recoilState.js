@@ -24,3 +24,23 @@ export const bookingNumber = atom({
   key: 'bookingNumber',
   default: [],
 });
+
+export const userInfo = atom({
+  key: 'userInfo',
+  default: [],
+});
+
+export const isLiked = atom({
+  key: 'isLiked',
+  default: 0,
+});
+
+export const hostId = atom({
+  key: 'hostId',
+  default: 0,
+});
+
+export const studioId = atom({
+  key: 'studioId',
+  default: 0,
+});

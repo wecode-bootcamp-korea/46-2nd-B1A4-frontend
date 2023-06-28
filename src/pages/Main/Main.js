@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
 import { useSearchParams } from 'react-router-dom';
+import { useInView } from 'react-intersection-observer';
+import { useRecoilState } from 'recoil';
 import StudioCard from '../../components/StudioCard/StudioCard';
 import MainMap from './MainMap';
-import { MainBackground, Container } from './StyleMain';
+import { isLiked } from '../../recoilState';
+import { Container, MainBackground } from './StyleMain';
 
 const Main = () => {
-  const [mockData, setMockData] = useState([]);
   const [filterData, setFilterData] = useState([]);
-  const [offset, setOffset] = useState(0);
   const [ref, inView] = useInView();
   const [searchParams, setSearchParams] = useSearchParams();
+  const studioCategoryId = searchParams.get('studioCategoryId');
+  const [isWishlistAdd, setIsWishlistAdd] = useState();
+  const [like, setLike] = useRecoilState(isLiked);
   const [isMapOpen, setIsMapOpen] = useState(false);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -20,38 +24,30 @@ const Main = () => {
     slidesToScroll: 1,
   };
 
-  const LIMIT = 9;
-  const nextOffset = LIMIT + offset;
-
-  // 추후 mockData 통신
-  // useEffect(() => {
-  //   fetch(
-  //     `${
-  //       process.env.REACT_APP_SERVER_HOST
-  //     }/studios/filter?studioCategoryId=1&offset=${
-  //       nextOffset - 9
-  //     }&limit=${LIMIT}`
-  //   )
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setMockData(data.data);
-  //     });
-  // }, []);
+  const OFFSET = 0;
+  const limit = searchParams.get('limit');
 
   useEffect(() => {
-    fetch(
-      `${
-        process.env.REACT_APP_SERVER_HOST
-      }/studios/filter?studioCategoryId=1&offset=${
-        nextOffset - 9
-      }&limit=${LIMIT}`
-    )
-      .then(res => res.json())
-      .then(data => {
-        setFilterData(prev => prev.concat(data.data));
-        setOffset(prev => prev + LIMIT);
-      });
-  }, [inView]);
+    if (limit) {
+      let currentLimit = inView ? Number(limit) + 9 : limit;
+
+      fetch(
+        `${process.env.REACT_APP_SERVER_HOST}/studios/filter?studioCategoryId=${studioCategoryId}&offset=${OFFSET}&limit=${currentLimit}`,
+        {
+          headers: {
+            Authorization: localStorage.getItem('accessToken'),
+          },
+        }
+      )
+        .then(res => res.json())
+        .then(data => {
+          setFilterData(data.data);
+        });
+
+      searchParams.set('limit', currentLimit);
+      setSearchParams(searchParams);
+    }
+  }, [inView, studioCategoryId]);
 
   const params = searchParams.get('map_open');
 
@@ -59,42 +55,29 @@ const Main = () => {
     setIsMapOpen(params === 'true');
   }, [params]);
 
-  if (!filterData.length) return null;
-
-  // 추후 mockData 통신
-  // if (mockData.length === 0) return null;
+  if (filterData.length === 0) return null;
 
   return (
-    <>
-      {/* 추후 mockData 통신 */}
-      {/* <Container>
-        {mockData &&
-          mockData.map(list => {
+    <MainBackground>
+      {isMapOpen ? (
+        <MainMap />
+      ) : (
+        <Container>
+          {filterData.map(list => {
             return (
-              <StudioCard key={list.studioId} list={list} settings={settings} />
+              <StudioCard
+                key={list.studioId}
+                list={list}
+                settings={settings}
+                isWishlistAdd={isWishlistAdd}
+                setIsWishlistAdd={setIsWishlistAdd}
+              />
             );
           })}
-      </Container> */}
-
-      <MainBackground>
-        {isMapOpen ? (
-          <MainMap />
-        ) : (
-          <Container>
-            {filterData.map(list => {
-              return (
-                <StudioCard
-                  key={list.studioId}
-                  list={list}
-                  settings={settings}
-                />
-              );
-            })}
-            <div ref={ref}></div>
-          </Container>
-        )}
-      </MainBackground>
-    </>
+          <div ref={ref}></div>
+        </Container>
+      )}
+    </MainBackground>
   );
 };
 

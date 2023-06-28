@@ -53,6 +53,7 @@ export const ProfileImg = styled.img`
   height: 120px;
   border-radius: 50%;
   margin-bottom: 20px;
+  object-fit: cover;
 `;
 
 export const ProfileName = styled.p`

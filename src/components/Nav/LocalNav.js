@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import {
   faCameraRetro,
   faChampagneGlasses,
@@ -21,7 +21,7 @@ import {
   FilterIcon,
   FilterText,
 } from './StyleLocalNav';
-import FilterModal from '../../components/Modal/FilterModal';
+import Filter from '../Filter/Filter';
 
 const LocalNav = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -37,40 +37,46 @@ const LocalNav = () => {
     setSearchParams(searchParams);
   };
 
+  const isMapOpen = searchParams.get('map_open');
+
+  const location = useLocation();
+  const pathname = location.pathname;
+
+  const isListView = isMapOpen !== 'true' && pathname === '/';
+
   return (
-    <>
-      <LocalNavContainer>
-        <LocalNavWrapper>
-          {CATEGORY.map(({ id, icon, name }) => {
-            return (
-              <LocalNavBox
-                key={id}
-                onClick={() => {
-                  setCategoryParams(id);
-                }}
-              >
-                <CategoryIcon icon={icon} />
-                <CategoryName>{name}</CategoryName>
-              </LocalNavBox>
-            );
-          })}
-        </LocalNavWrapper>
-        <FilterButton
-          onClick={() => {
-            setIsOpenModal(prev => !prev);
-          }}
-        >
-          <FilterIcon icon={faSliders} />
-          <FilterText>필터</FilterText>
-        </FilterButton>
-      </LocalNavContainer>
-      {isOpenModal && (
-        <FilterModal
-          isOpenModal={isOpenModal}
-          handleModal={() => handleModal()}
-        />
-      )}
-    </>
+    isListView && (
+      <>
+        <LocalNavContainer>
+          <LocalNavWrapper>
+            {CATEGORY.map(({ id, icon, name }) => {
+              return (
+                <LocalNavBox
+                  key={id}
+                  onClick={() => {
+                    setCategoryParams(id);
+                  }}
+                >
+                  <CategoryIcon icon={icon} />
+                  <CategoryName>{name}</CategoryName>
+                </LocalNavBox>
+              );
+            })}
+          </LocalNavWrapper>
+          <FilterButton
+            onClick={() => {
+              setIsOpenModal(prev => !prev);
+            }}
+          >
+            <FilterIcon icon={faSliders} />
+            <FilterText>필터</FilterText>
+          </FilterButton>
+        </LocalNavContainer>
+        {isOpenModal && (
+          <Filter isOpenModal={isOpenModal} handleModal={handleModal} />
+        )}
+      </>
+    )
   );
 };
 

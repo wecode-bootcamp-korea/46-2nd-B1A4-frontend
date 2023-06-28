@@ -14,7 +14,7 @@ export default function ResSuccess() {
   const navigate = useNavigate();
 
   const handleMainLink = () => {
-    navigate('/main');
+    navigate('/');
   };
 
   const ShowTime = () => {
