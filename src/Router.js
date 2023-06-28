@@ -12,14 +12,16 @@ import ReqSuccess from './components/Toss/ReqSuccess';
 import ResSuccess from './components/Toss/ResSuccess';
 import Fail from './components/Toss/Fail';
 import LoadingLogOut from './pages/Loading/Loading-logout';
+import NotFound from './pages/NotFound/NotFound';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Nav />}>
+        <Route path="/*" element={<NotFound />} />
+        <Route path="" element={<Nav />}>
+          <Route path="/" element={<Main />} />
           <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/main" element={<Main />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/loading" element={<Loading />} />
           <Route path="/loading-logout" element={<LoadingLogOut />} />

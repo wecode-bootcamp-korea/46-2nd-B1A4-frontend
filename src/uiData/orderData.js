@@ -29,7 +29,7 @@ export const PAY_METHOD = [
 export const SIMPLE_PAY_METHOD = [
   {
     id: 6,
-    imgUrl: '/images/tossPay.webp',
+    imgUrl: '/images/tossPay.jpg',
     name: '토스페이',
     method: '간편결제',
   },

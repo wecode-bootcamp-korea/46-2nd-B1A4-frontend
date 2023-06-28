@@ -79,7 +79,7 @@ const Detail = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://10.58.52.145:8000/studios/details/${id}`)
+    fetch(`${process.env.REACT_APP_SERVER_HOST}/studios/details/${id}`)
       .then(res => res.json())
       .then(data => {
         setDetailsData(data.data);

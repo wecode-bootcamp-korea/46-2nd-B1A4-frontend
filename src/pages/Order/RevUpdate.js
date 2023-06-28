@@ -16,11 +16,23 @@ const RevUpdate = ({ isOpenModal, handleModal, studioId }) => {
   const [selectedTime, setSelectedTime] = useRecoilState(time);
   const [detailsData, setDetailsData] = useState({});
   const bookedArray = useRecoilState(bookingNumber);
-  const navigate = useNavigate();
+  const [bookingArray, setBookingArray] = useRecoilState(bookingNumber);
 
-  const ShowTime = () => {
-    if (selectedAllTime.length === 0) {
-      return '시간선택';
+  const PrevShowTime = () => {
+    if (selectedAllTime.length === 0 || selectedAllTime[0] === -1) {
+      return '';
+    } else if (selectedAllTime.length === 1) {
+      return `변경 전 ${selectedAllTime[0]}:00 ~ ${selectedAllTime[0] + 1}:00`;
+    } else {
+      return `변경 전 ${selectedAllTime[0]}:00 ~ ${
+        selectedAllTime[selectedAllTime.length - 1]
+      }:00`;
+    }
+  };
+
+  const NextShowTime = () => {
+    if (selectedTime.length === 0 || selectedTime[0] === -1) {
+      return '';
     } else if (selectedTime[1] === null) {
       return `${selectedTime[0]}:00 ~ ${selectedTime[0] + 1}:00`;
     } else {
@@ -60,6 +72,9 @@ const RevUpdate = ({ isOpenModal, handleModal, studioId }) => {
   const preventOrder = () => {
     if (selectedDate.length === 0 || guestCount === 0) {
       alert('시간 또는 인원을 선택해주세요');
+      return null;
+    } else if (selectedTime.length === 0 || selectedTime[0] === -1) {
+      alert('변경 할 시간을 선택해주세요.');
       return null;
     } else {
       getAllTime();
@@ -104,12 +119,14 @@ const RevUpdate = ({ isOpenModal, handleModal, studioId }) => {
           <div>
             <S.TimePickerDiv>
               <S.FlexBox>
-                <S.TitleSpan>예약 시간 {ShowTime()}</S.TitleSpan>
+                <S.TitleSpan>
+                  예약 시간
+                  <S.TimeSpan>
+                    {PrevShowTime() + ' / 변경 후' + NextShowTime()}
+                  </S.TimeSpan>
+                </S.TitleSpan>
               </S.FlexBox>
-              <TimePicker
-                setTime={setSelectedTime}
-                bookingNum={bookedArray[0]}
-              />
+              <TimePicker setTime={setSelectedTime} bookingNum={bookingArray} />
             </S.TimePickerDiv>
           </div>
         </S.ContainerLeft>

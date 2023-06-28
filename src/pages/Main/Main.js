@@ -40,7 +40,9 @@ const Main = () => {
 
   useEffect(() => {
     fetch(
-      `http://10.58.52.175:8000/studios/filter?studioCategoryId=1&offset=${
+      `${
+        process.env.REACT_APP_SERVER_HOST
+      }/studios/filter?studioCategoryId=1&offset=${
         nextOffset - 9
       }&limit=${LIMIT}`
     )

@@ -55,11 +55,18 @@ export const ContainerLeft = styled.div`
   width: 450px;
 `;
 
-export const TitleSpan = styled.p`
+export const TitleSpan = styled.span`
   font-size: 1.5rem;
   font-weight: 600;
   margin-top: 24px;
   margin-bottom: 24px;
+`;
+export const TimeSpan = styled.span`
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  margin-left: 10px;
 `;
 
 export const Exp = styled.span`

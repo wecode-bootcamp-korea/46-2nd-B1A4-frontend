@@ -184,6 +184,186 @@
             { "refrigerator": "N" },
             { "parking": "Y" }
           ]
+        },
+        {
+          "studios_id": 11,
+          "studio_type": "room",
+          "price_per_hour": "34000",
+          "amenities": [
+            { "wifi": "N" },
+            { "kitchen": "Y" },
+            { "aircon": "N" },
+            { "heating": "N" },
+            { "meeting_room": "N" },
+            { "tv": "Y" },
+            { "swimming_pool": "N" },
+            { "chair": "N" },
+            { "bath_tub": "N" },
+            { "refrigerator": "N" },
+            { "parking": "Y" }
+          ]
+        },
+        {
+          "studios_id": 12,
+          "studio_type": "room",
+          "price_per_hour": "19000",
+          "amenities": [
+            { "wifi": "N" },
+            { "kitchen": "Y" },
+            { "aircon": "N" },
+            { "heating": "N" },
+            { "meeting_room": "N" },
+            { "tv": "Y" },
+            { "swimming_pool": "N" },
+            { "chair": "N" },
+            { "bath_tub": "N" },
+            { "refrigerator": "N" },
+            { "parking": "Y" }
+          ]
+        },
+        {
+          "studios_id": 13,
+          "studio_type": "room",
+          "price_per_hour": "70000",
+          "amenities": [
+            { "wifi": "N" },
+            { "kitchen": "Y" },
+            { "aircon": "N" },
+            { "heating": "N" },
+            { "meeting_room": "N" },
+            { "tv": "Y" },
+            { "swimming_pool": "N" },
+            { "chair": "N" },
+            { "bath_tub": "N" },
+            { "refrigerator": "N" },
+            { "parking": "Y" }
+          ]
+        },
+        {
+          "studios_id": 14,
+          "studio_type": "room",
+          "price_per_hour": "30000",
+          "amenities": [
+            { "wifi": "N" },
+            { "kitchen": "Y" },
+            { "aircon": "N" },
+            { "heating": "N" },
+            { "meeting_room": "N" },
+            { "tv": "Y" },
+            { "swimming_pool": "N" },
+            { "chair": "N" },
+            { "bath_tub": "N" },
+            { "refrigerator": "N" },
+            { "parking": "Y" }
+          ]
+        },
+        {
+          "studios_id": 15,
+          "studio_type": "room",
+          "price_per_hour": "50000",
+          "amenities": [
+            { "wifi": "N" },
+            { "kitchen": "Y" },
+            { "aircon": "N" },
+            { "heating": "N" },
+            { "meeting_room": "N" },
+            { "tv": "Y" },
+            { "swimming_pool": "N" },
+            { "chair": "N" },
+            { "bath_tub": "N" },
+            { "refrigerator": "N" },
+            { "parking": "Y" }
+          ]
+        },
+        {
+          "studios_id": 16,
+          "studio_type": "room",
+          "price_per_hour": "80000",
+          "amenities": [
+            { "wifi": "N" },
+            { "kitchen": "Y" },
+            { "aircon": "N" },
+            { "heating": "N" },
+            { "meeting_room": "N" },
+            { "tv": "Y" },
+            { "swimming_pool": "N" },
+            { "chair": "N" },
+            { "bath_tub": "N" },
+            { "refrigerator": "N" },
+            { "parking": "Y" }
+          ]
+        },
+        {
+          "studios_id": 17,
+          "studio_type": "room",
+          "price_per_hour": "10000",
+          "amenities": [
+            { "wifi": "N" },
+            { "kitchen": "Y" },
+            { "aircon": "N" },
+            { "heating": "N" },
+            { "meeting_room": "N" },
+            { "tv": "Y" },
+            { "swimming_pool": "N" },
+            { "chair": "N" },
+            { "bath_tub": "N" },
+            { "refrigerator": "N" },
+            { "parking": "Y" }
+          ]
+        },
+        {
+          "studios_id": 18,
+          "studio_type": "room",
+          "price_per_hour": "20000",
+          "amenities": [
+            { "wifi": "N" },
+            { "kitchen": "Y" },
+            { "aircon": "N" },
+            { "heating": "N" },
+            { "meeting_room": "N" },
+            { "tv": "Y" },
+            { "swimming_pool": "N" },
+            { "chair": "N" },
+            { "bath_tub": "N" },
+            { "refrigerator": "N" },
+            { "parking": "Y" }
+          ]
+        },
+        {
+          "studios_id": 19,
+          "studio_type": "room",
+          "price_per_hour": "90000",
+          "amenities": [
+            { "wifi": "N" },
+            { "kitchen": "Y" },
+            { "aircon": "N" },
+            { "heating": "N" },
+            { "meeting_room": "N" },
+            { "tv": "Y" },
+            { "swimming_pool": "N" },
+            { "chair": "N" },
+            { "bath_tub": "N" },
+            { "refrigerator": "N" },
+            { "parking": "Y" }
+          ]
+        },
+        {
+          "studios_id": 20,
+          "studio_type": "room",
+          "price_per_hour": "10000",
+          "amenities": [
+            { "wifi": "N" },
+            { "kitchen": "Y" },
+            { "aircon": "N" },
+            { "heating": "N" },
+            { "meeting_room": "N" },
+            { "tv": "Y" },
+            { "swimming_pool": "N" },
+            { "chair": "N" },
+            { "bath_tub": "N" },
+            { "refrigerator": "N" },
+            { "parking": "Y" }
+          ]
         }
       ]
     }

@@ -98,7 +98,7 @@ export const RevTop = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 `;
 
 export const RevBottom = styled.div`

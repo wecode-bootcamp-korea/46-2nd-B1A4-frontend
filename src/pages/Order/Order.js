@@ -17,6 +17,7 @@ const Order = () => {
   const [selectedDate, setSelectedDate] = useRecoilState(date);
   const [guestCount, setGuestCount] = useRecoilState(count);
   const [selectedTime, setSelectedTime] = useRecoilState(time);
+  const [selectedAllTime, setSelectedAllTime] = useRecoilState(allTime);
   const [studioData, setStudioData] = useState({});
   const [userPhone, setUserPhone] = useState({});
   const [addPhone, setAddPhone] = useState(false);
@@ -107,12 +108,14 @@ const Order = () => {
   };
 
   const ShowTime = () => {
-    if (selectedTime.length === 0) {
-      return '시간선택';
-    } else if (selectedTime[1] === null) {
-      return `${selectedTime[0]}:00 ~ ${selectedTime[0] + 1}:00`;
+    if (selectedAllTime.length === 0 || selectedAllTime[0] === -1) {
+      return '';
+    } else if (selectedAllTime.length === 1) {
+      return `${selectedAllTime[0]}:00 ~ ${selectedAllTime[0] + 1}:00`;
     } else {
-      return `${selectedTime[0]}:00 ~ ${selectedTime[1] + 1}:00`;
+      return `${selectedAllTime[0]}:00 ~ ${
+        selectedAllTime[selectedAllTime.length - 1]
+      }:00`;
     }
   };
 
@@ -148,7 +151,10 @@ const Order = () => {
   };
 
   if (!studioData.studioImages) return null;
-  if (!userPhone.length) return null;
+  if (!userPhone) return null;
+
+  const timeLength = selectedAllTime.length;
+  const totalPrice = Number(studioData.studioPrice * timeLength);
 
   return (
     <S.StyleOrder>
@@ -227,7 +233,7 @@ const Order = () => {
                   })}
                 </S.RevTop>
               </S.OrderDiv>
-              {!userPhone[0].phoneNumber && (
+              {!userPhone[0]?.phoneNumber && (
                 <S.OrderDiv>
                   <S.MidSpan>필수 입력 정보</S.MidSpan>
 
@@ -284,7 +290,7 @@ const Order = () => {
                   )}
                 </S.OrderDiv>
               )}
-              {userPhone[0].phoneNumber && (
+              {userPhone[0]?.phoneNumber && (
                 <S.OrderDiv>
                   <S.MidSpan>필수 입력 정보</S.MidSpan>
 
@@ -292,11 +298,11 @@ const Order = () => {
                     <S.TopInnerLeft>
                       <S.SmallDiv>전화번호</S.SmallDiv>
                       <S.SmallDiv>
-                        {userPhone[0].phoneNumber.substr(0, 3) +
+                        {userPhone[0]?.phoneNumber.substr(0, 3) +
                           '-' +
-                          userPhone[0].phoneNumber.substr(3, 4) +
+                          userPhone[0]?.phoneNumber.substr(3, 4) +
                           '-' +
-                          userPhone[0].phoneNumber.substr(7, 4)}
+                          userPhone[0]?.phoneNumber.substr(7, 4)}
                       </S.SmallDiv>
                     </S.TopInnerLeft>
                     <S.TopInnerRight>
@@ -359,9 +365,7 @@ const Order = () => {
                     <div>총 합계(KRW)</div>
                   </S.TopInnerLeft>
                   <S.TopInnerRight>
-                    <div>
-                      {Number(studioData.studioPrice).toLocaleString('en')}
-                    </div>
+                    <div>{totalPrice.toLocaleString('en')}</div>
                   </S.TopInnerRight>
                 </S.RevTop>
                 <S.OrderBtn onClick={handleOrderBtn}>결제하기</S.OrderBtn>

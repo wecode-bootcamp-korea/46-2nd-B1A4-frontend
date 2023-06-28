@@ -21,7 +21,7 @@ import {
   FilterIcon,
   FilterText,
 } from './StyleLocalNav';
-import FilterModal from '../Modal/FilterModal';
+import FilterModal from '../../components/Modal/FilterModal';
 
 const LocalNav = () => {
   const [searchParams, setSearchParams] = useSearchParams();

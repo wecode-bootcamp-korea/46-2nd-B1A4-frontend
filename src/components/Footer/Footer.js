@@ -22,7 +22,7 @@ const Footer = () => {
     return null;
   }
 
-  if (location.pathname !== '/main') {
+  if (location.pathname !== '/') {
     return <DetailFooter />;
   }
 
