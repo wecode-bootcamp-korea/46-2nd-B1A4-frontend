@@ -17,26 +17,23 @@ const NotFound = () => {
       </S.NotFoundNav>
       <S.NotContainer>
         <S.NotInner>
-          <div>
-            <S.WrapperLeftInner>
-              <S.BigDiv>404</S.BigDiv>
-              <S.BigDiv>Lost in Space</S.BigDiv>
-              <div>
-                <S.MidDiv>검색하시려는 페이지를 찾을 수 없습니다.</S.MidDiv>
-                {NotFoundData.map(not => {
-                  return (
-                    <S.UlStyle key={not.id}>
-                      <S.LiStyle>
-                        <S.NotFoundLink to={not.link}>
-                          {not.name}
-                        </S.NotFoundLink>
-                      </S.LiStyle>
-                    </S.UlStyle>
-                  );
-                })}
-              </div>
-            </S.WrapperLeftInner>
-          </div>
+          <S.WrapperLeftInner>
+            <S.BigDiv>404</S.BigDiv>
+            <S.BigDiv>Lost in Space</S.BigDiv>
+            <div>
+              <S.MidDiv>검색하시려는 페이지를 찾을 수 없습니다.</S.MidDiv>
+              {NotFoundData.map(not => {
+                return (
+                  <S.UlStyle key={not.id}>
+                    <S.LiStyle>
+                      <S.NotFoundLink to={not.link}>{not.name}</S.NotFoundLink>
+                    </S.LiStyle>
+                  </S.UlStyle>
+                );
+              })}
+            </div>
+          </S.WrapperLeftInner>
+
           <S.WrapperRight>
             <S.WrapperImg imgSrc="/images/notFound.png" />
           </S.WrapperRight>

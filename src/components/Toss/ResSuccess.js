@@ -19,10 +19,11 @@ export default function ResSuccess() {
 
   const ShowTime = () => {
     const timeSlot = resSuccess.timeSlot;
+
     if (!timeSlot) {
       return '';
-    } else if (timeSlot[1] === null) {
-      return `${timeSlot[0]}:00 ~ ${timeSlot[0] + 1}:00`;
+    } else if (timeSlot.length === 1) {
+      return `${timeSlot[0]}:00 ~ ${Number(timeSlot[0]) + 1}:00`;
     } else {
       return `${timeSlot[0]}:00 ~ ${timeSlot[1] + 1}:00`;
     }
@@ -42,6 +43,7 @@ export default function ResSuccess() {
     )
       .then(response => response.json())
       .then(result => {
+        console.log(result);
         setResSuccess(result.data[0]);
       });
   }, []);
@@ -68,12 +70,14 @@ export default function ResSuccess() {
             <S.H2>{resSuccess.studioName}</S.H2>
             <S.DescDiv>
               {resSuccess.studioAddress}
-              <S.SmallSpan>
+              <S.DescDiv>
                 <S.Star>
                   <FontAwesomeIcon icon={faStar} />
                 </S.Star>
-                {resSuccess.averageRating}
-              </S.SmallSpan>
+                {resSuccess.averageRating
+                  ? resSuccess.averageRating
+                  : '후기없음'}
+              </S.DescDiv>
             </S.DescDiv>
           </S.ContainerLeftInner>
           <S.ContainerRightInner>

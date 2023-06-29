@@ -15,7 +15,7 @@ export const ModalWrapper = styled.div`
   position: relative;
   ${props => props.theme.flexBox('column', 'flex-start', 'center')};
   width: 36vw;
-  min-width: 230px;
+  min-width: 400px;
   color: #000;
   background: #fff;
   border-radius: 15px;

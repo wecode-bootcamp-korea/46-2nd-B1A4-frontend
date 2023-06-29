@@ -36,6 +36,10 @@ export default function ReqSuccess() {
             `${process.env.REACT_APP_SERVER_HOST}/bookings/${result.data}`,
             {
               method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem('accessToken'),
+              },
             }
           )
             .then(res => res.json())

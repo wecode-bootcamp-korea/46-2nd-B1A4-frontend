@@ -33,7 +33,24 @@ const Review = () => {
     }
   };
 
-  if (!reviewInfo.length) return null;
+  if (!reviewInfo.length)
+    return (
+      <S.NoReview>
+        <S.Title>
+          <S.ReviewCountSpan>후기 0개</S.ReviewCountSpan>
+          <br />
+          <br />
+        </S.Title>
+        <S.TitleNoReview>
+          <S.Star>
+            <FontAwesomeIcon icon={faStar} />
+          </S.Star>
+          <S.ReviewCountSpan>
+            아직 이 스튜디오에는 리뷰가 없네요!
+          </S.ReviewCountSpan>
+        </S.TitleNoReview>
+      </S.NoReview>
+    );
 
   return (
     <S.StyleReview>
@@ -52,7 +69,14 @@ const Review = () => {
           return (
             <S.ReviewBody key={user.reviewId}>
               <S.BodyWrapper>
-                <S.UserImg imgSrc={user.userProfileImage} />
+                <S.UserImg
+                  imgSrc={
+                    user.userProfileImage === 'NULL'
+                      ? '/images/userImg.png'
+                      : user.userProfileImage
+                  }
+                />
+
                 <S.BodyInner>
                   <S.NameSpan>{user.userName}</S.NameSpan>
                   <S.GraySpan>

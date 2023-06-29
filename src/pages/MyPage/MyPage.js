@@ -25,7 +25,7 @@ const MyPage = () => {
             </S.ProfileYear>
           </S.ProfileBox>
           <S.CertifiedBox>
-            <S.Year>재웅 님의 인증 정보</S.Year>
+            <S.Year>{userFullName}님의 인증 정보</S.Year>
             <S.Line>
               <S.Icon />
               <S.Ptag>신분증</S.Ptag>

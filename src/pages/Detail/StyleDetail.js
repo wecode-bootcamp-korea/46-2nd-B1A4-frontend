@@ -15,7 +15,7 @@ import { FiShare } from 'react-icons/fi';
 import { TimeTableBox } from 'reservation-time-table';
 
 export const Container = styled.div`
-  padding: 160px 80px 0px 80px;
+  padding: 80px 80px 0px 80px;
 
   @media screen and (max-width: 860px) {
     padding: 0 40px;

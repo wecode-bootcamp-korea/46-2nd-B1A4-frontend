@@ -24,7 +24,7 @@ const Nav = () => {
 
   const handleLogin = () => {
     const accessToken = localStorage.getItem('accessToken');
-    if (accessToken && accessToken !== 'undefined') {
+    if (accessToken && accessToken !== undefined) {
       setIsLoggedIn(true);
     }
   };
@@ -50,21 +50,21 @@ const Nav = () => {
     setNavDropDownName('');
   });
 
-  useEffect(() => {
-    if (localStorage.getItem('accessToken')) {
-      fetch(`${process.env.REACT_APP_SERVER_HOST}/users`, {
-        headers: {
-          Authorization: localStorage.getItem('accessToken'),
-        },
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data) {
-            setMyUserInfo(data.data[0]);
-          }
-        });
-    }
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   if (localStorage.getItem('accessToken')) {
+  //     fetch(`${process.env.REACT_APP_SERVER_HOST}/users`, {
+  //       headers: {
+  //         Authorization: localStorage.getItem('accessToken'),
+  //       },
+  //     })
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         if (data) {
+  //           setMyUserInfo(data.data[0]);
+  //         }
+  //       });
+  //   }
+  // }, [isLoggedIn]);
 
   return (
     <>

@@ -41,7 +41,7 @@ export const OrderH2 = styled.h2`
   font-weight: 600;
 `;
 export const OrderLeft = styled.div`
-  width: 60%;
+  width: 55%;
 `;
 
 export const OrderInner = styled.div`
@@ -140,7 +140,7 @@ export const UpdateBtn = styled.button`
 `;
 
 export const OrderRight = styled.div`
-  width: 40%;
+  width: 45%;
   height: 350px;
   position: sticky;
   top: 10px;

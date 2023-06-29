@@ -6,6 +6,8 @@ const StudioCard = ({ list, settings, getFetch }) => {
   const [isLiked, setIsLiked] = useState(list.liked);
 
   const handleWishBtn = () => {
+    const likeNum = isLiked ? 0 : 1;
+
     if (!localStorage.getItem('accessToken')) {
       alert('로그인 후 이용해주세요.');
     } else {
@@ -17,7 +19,7 @@ const StudioCard = ({ list, settings, getFetch }) => {
         },
         body: JSON.stringify({
           studioId: list.studioId,
-          liked: isLiked,
+          liked: likeNum,
         }),
       })
         .then(res => res.json())
@@ -55,7 +57,7 @@ const StudioCard = ({ list, settings, getFetch }) => {
             </S.Average>
           )}
         </S.Title>
-        <S.Content>{list.studioAddress}</S.Content>
+        <S.Content>{list.studioNeighborhood}</S.Content>
         <S.ContentPrice>
           ₩{Number(list.studioPrice).toLocaleString('en')}/시간
         </S.ContentPrice>

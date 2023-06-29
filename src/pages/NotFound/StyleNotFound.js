@@ -44,23 +44,24 @@ export const NotInner = styled.div`
 `;
 export const WrapperLeftInner = styled.div`
   color: white;
-`;
-export const WrapperLeft = styled.div`
-  width: 50%;
-  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
+export const WrapperLeft = styled.div`
+  width: 50%;
+  color: white;
+`;
 
 export const WrapperRight = styled.div`
-  width: 50%;
+  margin-left: 10%;
+  width: 40%;
 `;
 
 export const WrapperImg = styled.div`
   width: 80%;
   height: 100%;
-  background-position: 50% 100%;
+  background-position: 40% 100%;
   background-size: cover;
   background-image: url(${props => props.imgSrc});
 `;

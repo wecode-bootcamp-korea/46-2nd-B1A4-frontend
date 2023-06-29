@@ -92,7 +92,13 @@ const MoreReview = ({ isOpenModal, handleModal, focusId }) => {
             >
               <S.BodyContainer>
                 <S.BodyWrapper>
-                  <S.UserImg imgSrc={user.userProfileImage} />
+                  <S.UserImg
+                    imgSrc={
+                      user.userProfileImage === 'NULL'
+                        ? '/images/userImg.png'
+                        : user.userProfileImage
+                    }
+                  />
                   <S.BodyInner>
                     <S.NameSpan>{user.userName}</S.NameSpan>
                     <S.GraySpan>

@@ -52,7 +52,8 @@ const Order = () => {
   const handleTossApi = () => {
     const amount = studioData.studioPrice.toLocaleString().split('.');
     const bookingDate = selectedDate.toISOString().split('T');
-    const timeSlot = `[${selectedTime}]`;
+    const timeSlot = `[${selectedAllTime}]`;
+    const totalPrice = Number(amount[0]) * (Number(selectedAllTime.length) - 1);
 
     fetch('https://api.tosspayments.com/v1/payments', {
       method: 'POST',
@@ -63,14 +64,10 @@ const Order = () => {
       },
       body: JSON.stringify({
         method: method,
-        amount: Number(amount[0]),
+        amount: totalPrice,
         orderId: nanoid(),
         orderName: studioData.studioName,
-        successUrl: `http://localhost:3000/order/${studioId}/req_success?amount=${Number(
-          amount[0]
-        )}&guest=${guestCount}&timeSlot=${timeSlot}&bookingDate=${
-          bookingDate[0]
-        }`,
+        successUrl: `http://localhost:3000/order/${studioId}/req_success?amount=${totalPrice}&guest=${guestCount}&timeSlot=${timeSlot}&bookingDate=${bookingDate[0]}`,
         failUrl: `http://localhost:3000/order/${studioId}/req_fail`,
       }),
     })
@@ -154,7 +151,7 @@ const Order = () => {
   if (!userPhone) return null;
 
   const timeLength = selectedAllTime.length;
-  const totalPrice = Number(studioData.studioPrice * timeLength);
+  const totalPrice = Number(studioData.studioPrice * Number(timeLength - 1));
 
   return (
     <S.StyleOrder>

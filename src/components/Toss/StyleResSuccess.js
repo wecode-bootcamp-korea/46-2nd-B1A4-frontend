@@ -104,7 +104,6 @@ export const H2 = styled.h2`
 
 export const Star = styled.span`
   color: ${props => props.theme.primaryColor};
-  margin-left: 5px;
   margin-right: 2px;
 `;
 

@@ -9,8 +9,7 @@ export const HostBackground = styled.div`
 export const HostContainer = styled.div`
   ${props => props.theme.flexBox('column', 'flext-start', 'flex-start')};
   width: 900px;
-  height: 85%;
-  margin: 10% 0 5%;
+  margin: 90px 0 20px;
   padding: 10px 150px;
   border-radius: 20px;
 `;
@@ -86,7 +85,7 @@ export const CategoryOption = styled.option`
 
 export const SubmitBtn = styled.button`
   width: 140px;
-  margin: 30px 0 10px 77%;
+  margin: 50px 0 10px 77%;
   padding: 12px 20px;
   background-color: ${props => props.theme.primaryColor};
   border: none;

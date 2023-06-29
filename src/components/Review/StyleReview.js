@@ -9,6 +9,15 @@ export const Title = styled.h1`
   font-weight: 600;
 `;
 
+export const NoReview = styled.div`
+  width: 300px;
+`;
+
+export const TitleNoReview = styled.h1`
+  font-size: 15px;
+  font-weight: 600;
+`;
+
 export const H2 = styled.h2`
   font-weight: 600;
   font-size: 18px;
@@ -16,10 +25,11 @@ export const H2 = styled.h2`
 
 export const Star = styled.span`
   color: ${props => props.theme.primaryColor};
+  margin-right: 10px;
 `;
 
 export const ReviewCountSpan = styled.span`
-  margin-left: 10px;
+  /* margin-left: 10px; */
 `;
 
 export const ReviewBody = styled.div`
@@ -79,9 +89,15 @@ export const BodyWrapper = styled.div`
 `;
 
 export const UserImg = styled.div`
-  width: 40px;
+  min-width: 40px;
   height: 40px;
+  background-position: 40xpx 40px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-image: url(${props => props.imgSrc});
+  border: 1px solid #eef0f3;
+  padding: 15px;
   border-radius: 50%;
 `;
 export const NameSpan = styled.span`

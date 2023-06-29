@@ -2,12 +2,12 @@ export const NotFoundData = [
   {
     id: '1',
     name: '홈',
-    link: '/main',
+    link: '/?limit=9&studioCategoryId=1',
   },
   {
     id: '2',
     name: '스페이스어라운드 경험하기',
-    link: '/main',
+    link: '/?limit=9&studioCategoryId=1',
   },
   {
     id: '3',

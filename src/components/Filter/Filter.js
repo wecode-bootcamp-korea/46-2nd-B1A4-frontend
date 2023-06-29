@@ -166,7 +166,7 @@ const Filter = ({ isOpenModal, handleModal }) => {
               전체 해제
             </S.AllCancelSpan>
           </div>
-          <S.BlackBtn>숙소 648개 표시</S.BlackBtn>
+          <S.BlackBtn>숙소 78개 표시</S.BlackBtn>
         </S.FooterDiv>
       </S.Footer>
     </S.StyleFilter>

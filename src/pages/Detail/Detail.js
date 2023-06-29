@@ -51,11 +51,7 @@ const Detail = () => {
   } = detailsData;
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_HOST}/studios/details/${id}`, {
-      headers: {
-        Authorization: localStorage.getItem('accessToken'),
-      },
-    })
+    fetch(`${process.env.REACT_APP_SERVER_HOST}/studios/details/${id}`)
       .then(res => res.json())
       .then(data => {
         setDetailsData(data.data);
@@ -94,7 +90,8 @@ const Detail = () => {
   };
 
   const handleCount = value => {
-    if (guestCount + value === 0 || guestCount + value === 11) return;
+    if (guestCount + value === 0 || guestCount + value === maxGuests + 1)
+      return;
     setGuestCount(guestCount + value);
   };
 
@@ -103,7 +100,7 @@ const Detail = () => {
       setGuestCount(Number(e.target.value));
       if (guestCount > maxGuests) {
         alert(`최대인원은 ${maxGuests}명 입니다.`);
-        setGuestCount(10);
+        setGuestCount(maxGuests);
       }
     }
   };
@@ -196,7 +193,9 @@ const Detail = () => {
                 <S.Star />
                 {averageRating}
               </S.Ptag>
-              <S.TitleInfor>{`후기 ${ratingCount}개`}</S.TitleInfor>
+              <S.TitleInfor>
+                {ratingCount > 0 ? `후기 ${ratingCount}개` : '후기없음'}
+              </S.TitleInfor>
               <S.TitleInfor onClick={handleMapClick}>
                 {studioAddress}
               </S.TitleInfor>
@@ -212,9 +211,9 @@ const Detail = () => {
             <S.MainImg src={studioImages[0]} />
             <S.SubImgBox>
               <S.SubImg src={studioImages[1]} />
-              <S.BorderTopImg src={studioImages[0]} />
-              <S.SubImg src={studioImages[1]} />
-              <S.BorderBottomImg src={studioImages[0]} />
+              <S.BorderTopImg src={studioImages[2]} />
+              <S.SubImg src={studioImages[3]} />
+              <S.BorderBottomImg src={studioImages[4]} />
             </S.SubImgBox>
           </S.ImgBox>
         </S.Main>
@@ -234,19 +233,23 @@ const Detail = () => {
                 return <S.Ptag key={content.id}>{`- ${content}`}</S.Ptag>;
               })}
             </S.Infor>
-            <S.Title>편의시설</S.Title>
-            {amenities?.map(amenitiesData => {
-              return (
-                <S.Notification key={amenitiesData.id}>
-                  <S.IconImg src={amenitiesData.imgIcon} />
-                  <div>
-                    <S.Ptag>{amenitiesData.title}</S.Ptag>
-                    <S.Ptag>{amenitiesData.content}</S.Ptag>
-                  </div>
-                </S.Notification>
-              );
-            })}
-            <S.BorderTop />
+            {amenities && (
+              <div>
+                <S.Title>편의시설</S.Title>
+                {amenities?.map(amenitiesData => {
+                  return (
+                    <S.Notification key={amenitiesData.id}>
+                      <S.IconImg src={amenitiesData.imgIcon} />
+                      <div>
+                        <S.Ptag>{amenitiesData.title}</S.Ptag>
+                        <S.Ptag>{amenitiesData.content}</S.Ptag>
+                      </div>
+                    </S.Notification>
+                  );
+                })}
+              </div>
+            )}
+            {amenities && <S.BorderTop />}
             <div ref={scrollDateRef}>
               <S.Title>예약 날짜를 선택하세요</S.Title>
               <Calendar

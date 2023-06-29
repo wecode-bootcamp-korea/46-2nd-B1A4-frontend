@@ -104,9 +104,15 @@ export const BodyWrapper = styled.div`
 `;
 
 export const UserImg = styled.div`
-  width: 40px;
+  min-width: 40px;
   height: 40px;
+  background-position: 40xpx 40px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-image: url(${props => props.imgSrc});
+  border: 1px solid #eef0f3;
+  padding: 15px;
   border-radius: 50%;
 `;
 export const NameSpan = styled.span`

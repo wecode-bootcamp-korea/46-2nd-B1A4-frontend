@@ -3,27 +3,28 @@ import { MapContainer, Map } from './StyleMainMap';
 import { useNavigate } from 'react-router-dom';
 const { kakao } = window;
 
-const MainMap = () => {
+const MainMap = ({ filterData }) => {
   const mapRef = useRef();
   const navigate = useNavigate();
 
   useEffect(() => {
     const container = document.getElementById('map');
     const options = {
-      center: new kakao.maps.LatLng(36.3437387096971, 127.41027496730207),
-      level: 12,
+      center: new kakao.maps.LatLng(37.504578, 126.99445),
+      level: 7,
     };
 
     mapRef.current = new kakao.maps.Map(container, options);
 
-    const overlayInfos = productInfos?.map(info => {
+    const overlayInfos = filterData?.map(info => {
       return {
-        title: info.title,
-        lat: info.lat,
-        lng: info.lng,
-        img: info.img[0],
-        price: info.price,
-        region: info.region,
+        id: info.studioId,
+        title: info.studioName,
+        lat: info.locationLatitude,
+        lng: info.locationLongitude,
+        img: info.studioImages[0],
+        price: info.studioPrice,
+        region: info.studioNeighborhood,
       };
     });
 
@@ -49,7 +50,7 @@ const MainMap = () => {
       studioImg.src = el.img;
       content.appendChild(studioImg);
       studioImg.onclick = function () {
-        navigate('/detail/1');
+        navigate(`/detail/${el.id}`);
       };
 
       const textContainer = document.createElement('div');
@@ -60,7 +61,7 @@ const MainMap = () => {
       accommWrap.classList.add('accommInfoWrap');
       textContainer.appendChild(accommWrap);
       accommWrap.onclick = function () {
-        navigate('/detail/1');
+        navigate(`/detail/${el.id}`);
       };
 
       const studioName = document.createElement('h1');
@@ -88,7 +89,7 @@ const MainMap = () => {
       const price = el.price.toLocaleString();
       const contentPrice = document.createElement('div');
       contentPrice.classList.add('overlayPrice');
-      contentPrice.appendChild(document.createTextNode(`₩${price}`));
+      contentPrice.appendChild(document.createTextNode(`₩${parseInt(price)}`));
       contentPrice.onclick = () => {
         customOverlay.setMap(mapRef.current);
       };
@@ -121,38 +122,3 @@ const MainMap = () => {
 };
 
 export default MainMap;
-
-const productInfos = [
-  {
-    title: '팀 스튜디오',
-    lat: 37.62197524055062,
-    lng: 127.16017523675508,
-    img: ['/images/room6.jpg'],
-    price: '30000',
-    region: '역삼동',
-  },
-  {
-    title: '민지 스튜디오',
-    lat: 37.22197524055062,
-    lng: 127.0383774403176,
-    img: ['/images/room5.jpg'],
-    price: '40000',
-    region: '삼성동',
-  },
-  {
-    title: '자현 스튜디오',
-    lat: 36.48232513883755,
-    lng: 127.35824367516048,
-    img: ['/images/room7.jpg'],
-    price: '20000',
-    region: '대치동',
-  },
-  {
-    title: '재웅 스튜디오',
-    lat: 36.78656273069659,
-    lng: 126.45211256646381,
-    img: ['/images/room9.jpg'],
-    price: '15000',
-    region: '연희동',
-  },
-];

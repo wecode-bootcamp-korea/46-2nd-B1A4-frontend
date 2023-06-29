@@ -21,7 +21,7 @@ import {
   FilterIcon,
   FilterText,
 } from './StyleLocalNav';
-import Filter from '../Filter/Filter';
+import FilterModal from '../Modal/FilterModal';
 
 const LocalNav = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -73,7 +73,10 @@ const LocalNav = () => {
           </FilterButton>
         </LocalNavContainer>
         {isOpenModal && (
-          <Filter isOpenModal={isOpenModal} handleModal={handleModal} />
+          <FilterModal
+            isOpenModal={isOpenModal}
+            handleModal={() => handleModal()}
+          />
         )}
       </>
     )

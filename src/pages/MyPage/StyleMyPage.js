@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { AiOutlineCheck } from 'react-icons/ai';
 
 export const Container = styled.div`
-  padding: 200px 80px;
+  padding: 140px 80px;
   display: flex;
 `;
 
@@ -21,17 +21,17 @@ export const FlexBox = styled.div`
 export const Wrap = styled.div``;
 
 export const ProfileBox = styled.div`
+  display: flex;
   border-radius: 20px;
   padding: 32px 44px;
   border: none;
   text-align: center;
   box-shadow: 3px 3px 15px #b0b0b0;
   margin-bottom: 40px;
-  display: flex;
 `;
 
 export const Wrapper = styled.div`
-  width: 50%;
+  width: 60%;
 `;
 
 export const ProfileYear = styled.div`
@@ -44,7 +44,7 @@ export const ProfileYear = styled.div`
 `;
 
 export const Year = styled.p`
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 700;
 `;
 
@@ -109,7 +109,7 @@ export const Link = styled.p`
 
 export const WritingBox = styled.div`
   padding-left: 80px;
-  width: 70%;
+  width: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
